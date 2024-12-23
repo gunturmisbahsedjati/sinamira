@@ -1,0 +1,19 @@
+# File Logging System By: Animasiku Studio #
+[ 127.0.0.1 ] 20 12 2024 17: 22 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 20 12 2024 17: 22 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 20 12 2024 17: 24 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 20 12 2024 17: 24 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 20 12 2024 17: 25 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 20 12 2024 18: 08 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 20 12 2024 18: 08 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 20 12 2024 18: 08 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 20 12 2024 18: 08 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 20 12 2024 18: 10 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 20 12 2024 18: 15 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 21 12 2024 14: 25 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 21 12 2024 14: 25 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 22 12 2024 16: 58 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 22 12 2024 19: 49 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 22 12 2024 19: 51 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 22 12 2024 19: 52 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 22 12 2024 19: 52 - ANIMASIKU Studio berhasil login
