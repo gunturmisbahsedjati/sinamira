@@ -331,6 +331,48 @@ if (document.getElementById('data_tim')) {
     });
   });
 
+  $(document).ready(function () {
+    $('#editTeam').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      document.getElementById("load-edit-team").style.display = "block";
+      document.getElementById("edit-team").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/master/data-tim/edit-tim.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-edit-team").style.display = "none";
+          document.getElementById("edit-team").style.display = "block";
+          $('.edit-team').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    });
+  });
+  $(document).ready(function () {
+    $('#delTeam').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      document.getElementById("load-del-team").style.display = "block";
+      document.getElementById("del-team").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/master/data-tim/hapus-tim.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-del-team").style.display = "none";
+          document.getElementById("del-team").style.display = "block";
+          $('.del-team').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    });
+  });
 
 }
 //js data-tim

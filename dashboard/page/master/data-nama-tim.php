@@ -55,18 +55,23 @@ if (isset($_SESSION['alert'])) : ?>
             <tbody>
               <?php
               $no = 1;
-              $sqlAkun = mysqli_query($myConnection, "select * from tb_tim where soft_delete =0");
-              while ($viewAkun = mysqli_fetch_array($sqlAkun)) { ?>
+              $sqlAkun = mysqli_query($myConnection, "select * from tb_tim where soft_delete = 0");
+              while ($viewTim = mysqli_fetch_array($sqlAkun)) { ?>
                 <tr>
                   <td class="text-center"><?= $no++ ?></td>
-                  <td><?= $viewAkun['nama_tim'] ?></td>
+                  <td><?= $viewTim['nama_tim'] ?></td>
                   <td class="text-center">
-                    <div style="height: 20px;width: auto;background-color: <?= $viewAkun['warna_tim'] ?>;"></div>
+                    <div style="height: 20px;width: auto;background-color: <?= $viewTim['warna_tim'] ?>;"></div>
                   </td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-icon btn-danger" title="Hapus Akses Pegawai" data-bs-toggle="modal" data-bs-target="#delAccount" data-id="<?= encrypt($viewAkun['id_tim']) ?>">
-                      <span class="tf-icons mdi mdi-delete"></span>
-                    </button>
+                    <div class="btn-group mb-2 mr-2">
+                      <button type="button" class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu <span class="sr-only">Toggle Dropdown</span></button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editTeam" data-id="<?= encrypt($viewTim['id_tim']) ?>"><span class="text-info" data-feather="edit"></span> Edit</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#!" data-toggle="modal" data-target="#delTeam" data-id="<?= encrypt($viewTim['id_tim']) ?>"><span class="text-danger" data-feather="trash-2"></span> Hapus</a>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               <?php } ?>
@@ -90,6 +95,32 @@ if (isset($_SESSION['alert'])) : ?>
         </div>
       </div>
       <div class="add-team" id="add-team"></div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editTeam" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div id="load-edit-team" style="display: none;">
+        <div class="modal-body">
+          <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
+          loading......
+        </div>
+      </div>
+      <div class="edit-team" id="edit-team"></div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="delTeam" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleDelModal" aria-hidden="true" aria-modal="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div id="load-del-team" style="display: none;">
+        <div class="modal-body">
+          <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
+          loading......
+        </div>
+      </div>
+      <div class="del-team" id="del-team"></div>
     </div>
   </div>
 </div>

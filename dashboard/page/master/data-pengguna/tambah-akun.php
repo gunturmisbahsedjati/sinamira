@@ -24,11 +24,11 @@ if (!isset($_SESSION['status_login'])) {
         <h4><i class="bx bx-folder-plus"></i> Tambah Akun Manajemen</h4>
     </div>
     <div class="modal-body">
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label">Pilih Pegawai</label>
-            <select class="form-control" title="Pilih Pegawai...." data-live-search="true" data-size="5" name="pegawai" id="pegawai">
+            <select class="form-control border border-secondary" title="Pilih Pegawai...." data-live-search="true" data-size="5" name="pegawai" id="pegawai">
                 <?php
-                $peg = getPegSinadin($keySinadin);
+                $peg = getAllEmployee($keySiratu);
                 $reqPeg = http_request($peg);
                 $cekPeg = json_decode($reqPeg, true);
                 if ($cekPeg['status']['code'] == '200') {
@@ -40,27 +40,46 @@ if (!isset($_SESSION['status_login'])) {
                 if ($peg) {
                     $no = 1;
                     foreach ($viewPeg as $viewPegArray) {
-                        echo '<option value="' . encrypt($viewPegArray['id_manajemen']) . '">' . $viewPegArray['nama_manajemen'] . '</option>';
+                        echo '<option value="' . encrypt($viewPegArray['id_peg']) . '">' . $viewPegArray['nama_peg'] . '</option>';
                     }
                 }
                 ?>
             </select>
-            <small class="text-danger">Data Pegawai yang telah memiliki akun SINADIN</small>
+            <small class="text-danger">Data Pegawai diambil dari Data SIRATU</small>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Nama Akun</label>
-            <input type="text" class="form-control fw-bold" id="nama" aria-describedby="defaultFormControlHelp" disabled>
-        </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label">Username</label>
-            <input type="text" class="form-control fw-bold" id="username" aria-describedby="defaultFormControlHelp" disabled>
+            <input type="text" class="form-control fw-bold" name="nama_pengguna" aria-describedby="defaultFormControlHelp">
         </div>
-        <div class="mb-3">
-            <label class="form-label">Level Akun</label>
-            <input type="text" class="form-control fw-bold" id="level" aria-describedby="defaultFormControlHelp" disabled>
+        <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="text" class="form-control fw-bold" name="kata_sandi" aria-describedby="defaultFormControlHelp">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Pilih Hak Akses</label>
+            <select class="form-control border border-secondary" title="Pilih Hak Akses...." name="level" id="level">
+                <?php
+                $sqlLevel = mysqli_query($myConnection, "select id_level_akun, ket from db_level_akun where id_level_akun !=1");
+                while ($viewLevel = mysqli_fetch_array($sqlLevel)) {
+                    echo '<option value="' . encrypt($viewLevel['id_level_akun']) . '">' . $viewLevel['ket'] . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group" id="optionTim" style="display: none;">
+            <label class="form-label">Pilih Akses Tim</label>
+            <select class="form-control border border-secondary" title="Pilih Hak Akses Tim...." name="akses_tim" id="akses_tim">
+                <?php
+                $sqlLevel = mysqli_query($myConnection, "select id_tim, nama_tim from tb_tim where soft_delete = 0");
+                while ($viewLevel = mysqli_fetch_array($sqlLevel)) {
+                    echo '<option value="' . encrypt($viewLevel['id_tim']) . '">' . $viewLevel['nama_tim'] . '</option>';
+                }
+                ?>
+            </select>
         </div>
     </div>
     <div class="modal-footer">
+
         <button type="submit" name="addAccount" class="btn btn-success">Simpan</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Batal</button>
     </div>
@@ -68,6 +87,18 @@ if (!isset($_SESSION['status_login'])) {
 <script type="text/javascript">
     $(document).ready(function() {
         $('#pegawai').selectpicker();
+        $('#level').selectpicker();
+
+        $('#level').change(function() {
+            let getValueLevel = document.getElementById("level");
+            let valueLevel = getValueLevel.value;
+            if (valueLevel == 'TWpNNU9UTTVOMk14') {
+                $('#akses_tim').selectpicker();
+                document.getElementById("optionTim").style.display = "block";
+            } else {
+                document.getElementById("optionTim").style.display = "none";
+            }
+        });
         $('#pegawai').change(function() {
             var $option = $(this).find('option:selected');
             var token = $option.val();

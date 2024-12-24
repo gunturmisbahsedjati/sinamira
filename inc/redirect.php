@@ -23,6 +23,7 @@ login($isi);
 $_SESSION['username'] = $akun['user_manajemen'];
 $_SESSION['id'] = $akun['id_manajemen'];
 $_SESSION['level'] = $akun['level_manajemen'];
+$_SESSION['akses_tim'] = $akun['jabatan_manajemen'];
 $_SESSION['nama_akun'] = $akun['nama_manajemen'];
 $_SESSION['soft_delete'] = $akun['soft_delete'];
 $_SESSION['status_login'] = true;

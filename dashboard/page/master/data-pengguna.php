@@ -89,7 +89,7 @@ if (isset($_SESSION['alert'])) : ?>
   <!-- [ sample-page ] end -->
 </div>
 
-<div class="modal fade" id="addAccount" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
+<div class="modal fade" id="addAccount" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-modal="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div id="load-add-account" style="display: none;">

@@ -22,11 +22,11 @@ if (!isset($_SESSION['status_login'])) {
         <h4><i class="bx bx-folder-plus"></i> Tambah Nama Tim/Divisi</h4>
     </div>
     <div class="modal-body">
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label">Nama Tim</label>
             <input type="text" class="form-control fw-bold" name="nama_tim" aria-describedby="defaultFormControlHelp">
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label">Warna Tim</label>
             <input class="form-control" type="color" value="#666EE8" name="colorpicker_value" id="colorpicker">
             <small class="text-danger">*Klik area warna untuk mengubah warna</small>
