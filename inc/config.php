@@ -53,3 +53,9 @@ function getAllEmployee($keySiratu)
     $api_url_siratu  = $urlApiSiratu . "getPegawai.php?apikey=" . urlencode($keySiratu);
     return $api_url_siratu;
 }
+function getDetailEmployee($keySiratu, $pegKey)
+{
+    global $urlApiSiratu;
+    $api_url_siratu  = $urlApiSiratu . "getDetailPegawai.php?apikey=" . urlencode($keySiratu) . "&pegkey=" . urlencode($pegKey);
+    return $api_url_siratu;
+}

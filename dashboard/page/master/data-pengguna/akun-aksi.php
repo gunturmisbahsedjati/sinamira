@@ -13,34 +13,46 @@ $arrayAkses = explode(",", $_SESSION['level']);
 if (in_array(1, $arrayAkses)) {
     if (isset($_POST['addAccount'])) {
 
-        $id_manajemen = mysqli_escape_string($myConnection, decrypt($_POST['pegawai']));
-        // echo $id_manajemen . '<br>';
+        $pegKey = mysqli_escape_string($myConnection, $_POST['pegawai']);
+
         $outputResult = [];
-        $cekPeg = getDetailsPegSinadinByID($keySinadin, $id_manajemen);
+        $cekPeg = getDetailEmployee($keySiratu, $pegKey);
         $pegJSON = @file_get_contents($cekPeg);
         $pegArr = json_decode($pegJSON, true);
         if ($pegArr['status']['code'] == '200') {
             $i = 1;
             $resultPeg = isset($pegArr['results']) ? $pegArr['results'] : array();
             foreach ($resultPeg as $arrPeg) {
-                $outputResult = $arrPeg;
+                $idResult = $arrPeg['id_peg'];
+                $nameResult = $arrPeg['nama_peg'];
+                $nipResult = $arrPeg['nip'];
             }
-            $cekId = mysqli_query($myConnection, "select id_manajemen from akun_manajemen where soft_delete = 0 and id_manajemen = '$outputResult[id_manajemen]'");
-            if (mysqli_num_rows($cekId) > 0) {
-                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan, Duplikat Akun'})";
+            // $id_peg = mysqli_escape_string($myConnection, decrypt($_POST['pegawai']));
+            // $cekId = mysqli_query($myConnection, "select id_peg from akun_manajemen where soft_delete = 0 and id_peg = '$idResult'");
+            // if (mysqli_num_rows($cekId) > 0) {
+            //     $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan, Duplikat Akun'})";
+            //     echo "<script> window.location='account'; </script>";
+            // } else {
+            $code2 = time() . '' . uniqid();
+            $code = strtoupper($code2);
+            $created_by = $_SESSION['id'];
+            $user_manajemen = mysqli_escape_string($myConnection, $_POST['nama_pengguna']);
+            $pass_manajemen = encrypt(mysqli_escape_string($myConnection, $_POST['kata_sandi']));
+            $level_manajemen = mysqli_escape_string($myConnection, decrypt($_POST['level']));
+            $tim_manajemen = isset($_POST['akses_tim']) && $level_manajemen == 3 ?  decrypt(mysqli_escape_string($myConnection, $_POST['akses_tim'])) : '';
+
+
+            $sqlInput = "insert into akun_manajemen (id_manajemen, user_manajemen, pass_manajemen, nama_manajemen, id_peg, level_manajemen, tim_manajemen, status_manajemen, created_by) values ('$code', '$user_manajemen', '$pass_manajemen', '$nameResult', '$idResult', '$level_manajemen', '$tim_manajemen', 'aktif', '$created_by')";
+            // echo $sqlInput;
+            $inputAkun = mysqli_query($myConnection, $sqlInput);
+            if ($inputAkun) {
+                $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Akun berhasil ditambahkan'})";
                 echo "<script> window.location='account'; </script>";
             } else {
-                $sqlInput = "insert into akun_manajemen (id_manajemen, user_manajemen, pass_manajemen, nama_manajemen, id_peg, level_manajemen, status_manajemen, created_by) values ('$outputResult[id_manajemen]', '$outputResult[user_manajemen]', '$outputResult[pass_manajemen]', '$outputResult[nama_manajemen]', '$outputResult[id_peg]', '$outputResult[level_manajemen]', '$outputResult[status_manajemen]', '$outputResult[created_by]')";
-                // echo $sqlInput;
-                $inputAkun = mysqli_query($myConnection, $sqlInput);
-                if ($inputAkun) {
-                    $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Akun berhasil ditambahkan'})";
-                    echo "<script> window.location='account'; </script>";
-                } else {
-                    $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan'})";
-                    echo "<script> window.location='account'; </script>";
-                }
+                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan'})";
+                echo "<script> window.location='account'; </script>";
             }
+            // }
         } else {
             $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'SQL Injection terdeteksi'})";
             echo "<script> window.location='account'; </script>";

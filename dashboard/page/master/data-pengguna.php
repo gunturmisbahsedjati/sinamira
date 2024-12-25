@@ -69,10 +69,18 @@ if (isset($_SESSION['alert'])) : ?>
                   <td class="text-center"><?= $no++ ?></td>
                   <td><?= $viewAkun['user_manajemen'] ?></td>
                   <td><?= $viewAkun['nama_manajemen'] ?></td>
-                  <td><?= $viewAkun['ket'] ?></td>
+                  <td><?php
+                      if ($viewAkun['level_manajemen'] == 3) {
+                        $akses = $viewAkun['tim_manajemen'];
+                        $showAkses = mysqli_fetch_array(mysqli_query($myConnection, "select nama_tim from tb_tim where id_tim = '$akses' and soft_delete = 0"));
+                        echo $viewAkun['ket'] . '<br>Akses ' . $showAkses['nama_tim'];
+                      } else {
+                        echo $viewAkun['ket'];
+                      }
+                      ?></td>
                   <td class="text-center">
                     <button type="button" class="btn btn-sm btn-icon btn-danger" title="Hapus Akses Pegawai" data-bs-toggle="modal" data-bs-target="#delAccount" data-id="<?= encrypt($viewAkun['id_manajemen']) ?>">
-                      <span class="tf-icons mdi mdi-delete"></span>
+                      <span class="" data-feather="trash-2"></span>
                     </button>
                   </td>
                 </tr>

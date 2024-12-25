@@ -13,6 +13,9 @@ switch ($opsi) {
     case 'account':
         require_once(PUB_DIR . 'page/master/data-pengguna.php');
         break;
+    case 'setAccount':
+        require_once(PUB_DIR . 'page/master/data-pengguna/akun-aksi.php');
+        break;
 
     case 'teamList':
         require_once(PUB_DIR . 'page/master/data-nama-tim.php');
