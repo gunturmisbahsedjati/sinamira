@@ -3,6 +3,7 @@ header('Access-Control-Allow-Origin: *');
 session_start();
 include_once '../../../../inc/inc.koneksi.php';
 include_once '../../../../inc/inc.library.php';
+include_once '../../../../inc/config.php';
 if (empty($_SESSION['username'])) {
     header('location:../../../');
 } else {
@@ -17,74 +18,76 @@ if (!isset($_SESSION['status_login'])) {
     </script>';
     exit;
 }
-
-if (isset($_POST['id']) && $_SESSION['level'] == 1) {
+if (isset($_POST['id'])) {
     $id_manajemen = decrypt($_POST['id']);
-    $cekAkun = mysqli_query($myConnection, "select id_manajemen, nama_manajemen, user_manajemen, level_manajemen from akun_manajemen where soft_delete = 0 and id_manajemen = '$id_manajemen'");
-    if (mysqli_num_rows($cekAkun) > 0) {
-        $viewPeg = mysqli_fetch_array($cekAkun);
+    $sqlAkun = mysqli_query($myConnection, "select akun_manajemen.*, db_level_akun.ket as level, tb_area.nama_area as area
+    from akun_manajemen
+    left join db_level_akun on db_level_akun.id_level_akun = akun_manajemen.level_manajemen
+    left join tb_area on tb_area.id_area = akun_manajemen.area_manajemen
+    where akun_manajemen.id_manajemen = '$id_manajemen'");
+    if (mysqli_num_rows($sqlAkun) > 0) {
+        $viewCekAkun = mysqli_fetch_array($sqlAkun);
+        if ($viewCekAkun['level_manajemen'] == 3) {
+            $akses = "\nAkses " . $viewCekAkun['area'];
+        } else {
+            $akses = '';
+        }
+
 ?>
         <form action="setAccount" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
             <div class="modal-header">
-                <h4><i class="bx bx-folder-plus"></i> Tambah Akun Manajemen</h4>
+                <h4><i class="bx bx-folder-plus"></i> Hapus Akun Manajemen</h4>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Nama Akun</label>
-                    <input type="text" class="form-control fw-bold" value="<?= $viewPeg['nama_manajemen'] ?>" aria-describedby="defaultFormControlHelp" disabled>
+                <div class="form-group">
+                    <label class="form-label">Nama Pegawai</label>
+                    <input type="text" class="form-control fw-bold" value="<?= $viewCekAkun['nama_manajemen'] ?>" readonly>
                 </div>
-                <div class="mb-3">
+                <div class="form-group">
                     <label class="form-label">Username</label>
-                    <input type="text" class="form-control fw-bold" value="<?= $viewPeg['user_manajemen'] ?>" aria-describedby="defaultFormControlHelp" disabled>
+                    <input type="text" class="form-control fw-bold" value="<?= $viewCekAkun['user_manajemen'] ?>" readonly>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Level Akun</label>
-                    <input type="text" class="form-control fw-bold" value="Petugas" aria-describedby="defaultFormControlHelp" disabled>
+                <div class="form-group">
+                    <label class="form-label">Hak Akses</label>
+                    <textarea class="form-control fw-bold" readonly><?= $viewCekAkun['level'] . '' . $akses ?></textarea>
                 </div>
-                <div class="">
+                <div class="form-group">
                     <div class="form-check">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="form-check-input" id="del_akun" name="cek">
-                            <label class="form-check-label" for="del_akun">Saya yakin akan melakukan perubahan <strong>Data Akun</strong>.</label>
-                        </div>
+                        <input class="form-check-input" type="checkbox" id="hapus_data_akun">
+                        <label class="form-check-label" for="hapus_data_akun">Saya yakin akan menghapus <strong>Data Pengguna</strong>.</label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" value="<?= encrypt($viewPeg['id_manajemen']) ?>" name="_token">
-                <button type="submit" name="delAccount" class="btn btn-info" id="delAkun" disabled><span class="tf-icons mdi mdi-delete"></span> Hapus</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+                <input type="hidden" name="_key" value="<?= encrypt($id_manajemen) ?>">
+                <button type="submit" name="delAccount" class="btn btn-info" id="hapusDataAkun" disabled>Hapus</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>
         <script type="text/javascript">
-            $('#del_akun').click(function() {
+            $('#hapus_data_akun').click(function() {
                 if ($(this).is(':checked')) {
 
-                    $('#delAkun').removeAttr('disabled');
+                    $('#hapusDataAkun').removeAttr('disabled');
 
                 } else {
-                    $('#delAkun').attr('disabled', true);
+                    $('#hapusDataAkun').attr('disabled', true);
                 }
             });
         </script>
-<?php } else {
+<?php
+    } else {
         echo '<div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Error</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <h2 class="text-center">Data Tidak Ditemukan</h2>
-    </div>';
-    }
-} else {
-    echo '<div class="modal-header">
     <h3 class="modal-title" id="exampleModalLabel">Error</h3>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 </div>
 <div class="modal-body">
     <h2 class="text-center">Data Tidak Ditemukan</h2>
 </div>';
+    }
+} else {
+    echo '<script type="text/javascript">
+window.location = "../"
+</script>';
 }
-
-
 ?>

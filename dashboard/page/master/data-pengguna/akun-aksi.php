@@ -14,6 +14,7 @@ if (in_array(1, $arrayAkses)) {
     if (isset($_POST['addAccount'])) {
 
         $pegKey = mysqli_escape_string($myConnection, $_POST['pegawai']);
+        $user_manajemen = mysqli_escape_string($myConnection, $_POST['nama_pengguna']);
 
         $outputResult = [];
         $cekPeg = getDetailEmployee($keySiratu, $pegKey);
@@ -28,37 +29,36 @@ if (in_array(1, $arrayAkses)) {
                 $nipResult = $arrPeg['nip'];
             }
             // $id_peg = mysqli_escape_string($myConnection, decrypt($_POST['pegawai']));
-            // $cekId = mysqli_query($myConnection, "select id_peg from akun_manajemen where soft_delete = 0 and id_peg = '$idResult'");
-            // if (mysqli_num_rows($cekId) > 0) {
-            //     $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan, Duplikat Akun'})";
-            //     echo "<script> window.location='account'; </script>";
-            // } else {
-            $code2 = time() . '' . uniqid();
-            $code = strtoupper($code2);
-            $created_by = $_SESSION['id'];
-            $user_manajemen = mysqli_escape_string($myConnection, $_POST['nama_pengguna']);
-            $pass_manajemen = encrypt(mysqli_escape_string($myConnection, $_POST['kata_sandi']));
-            $level_manajemen = mysqli_escape_string($myConnection, decrypt($_POST['level']));
-            $tim_manajemen = isset($_POST['akses_tim']) && $level_manajemen == 3 ?  decrypt(mysqli_escape_string($myConnection, $_POST['akses_tim'])) : '';
-
-
-            $sqlInput = "insert into akun_manajemen (id_manajemen, user_manajemen, pass_manajemen, nama_manajemen, id_peg, level_manajemen, tim_manajemen, status_manajemen, created_by) values ('$code', '$user_manajemen', '$pass_manajemen', '$nameResult', '$idResult', '$level_manajemen', '$tim_manajemen', 'aktif', '$created_by')";
-            // echo $sqlInput;
-            $inputAkun = mysqli_query($myConnection, $sqlInput);
-            if ($inputAkun) {
-                $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Akun berhasil ditambahkan'})";
+            $cekId = mysqli_query($myConnection, "select id_peg from akun_manajemen where soft_delete = 0 and user_manajemen = '$user_manajemen' ");
+            if (mysqli_num_rows($cekId) > 0) {
+                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan, Username sudah digunakan'})";
                 echo "<script> window.location='account'; </script>";
             } else {
-                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan'})";
-                echo "<script> window.location='account'; </script>";
+                $code2 = time() . '' . uniqid();
+                $code = strtoupper($code2);
+                $created_by = $_SESSION['id'];
+                $pass_manajemen = encrypt(mysqli_escape_string($myConnection, $_POST['kata_sandi']));
+                $level_manajemen = mysqli_escape_string($myConnection, decrypt($_POST['level']));
+                $area_manajemen = isset($_POST['akses_area']) && $level_manajemen == 3 ?  decrypt(mysqli_escape_string($myConnection, $_POST['akses_area'])) : '';
+
+
+                $sqlInput = "insert into akun_manajemen (id_manajemen, user_manajemen, pass_manajemen, nama_manajemen, id_peg, level_manajemen, area_manajemen, status_manajemen, created_by) values ('$code', '$user_manajemen', '$pass_manajemen', '$nameResult', '$idResult', '$level_manajemen', '$area_manajemen', 'aktif', '$created_by')";
+                // echo $sqlInput;
+                $inputAkun = mysqli_query($myConnection, $sqlInput);
+                if ($inputAkun) {
+                    $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Akun berhasil ditambahkan'})";
+                    echo "<script> window.location='account'; </script>";
+                } else {
+                    $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Akun gagal ditambahkan'})";
+                    echo "<script> window.location='account'; </script>";
+                }
             }
-            // }
         } else {
             $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'SQL Injection terdeteksi'})";
             echo "<script> window.location='account'; </script>";
         }
     } elseif (isset($_POST['delAccount'])) {
-        $id_manajemen = mysqli_escape_string($myConnection, decrypt($_POST['_token']));
+        $id_manajemen = mysqli_escape_string($myConnection, decrypt($_POST['_key']));
         $cekId = mysqli_query($myConnection, "select id_manajemen from akun_manajemen where soft_delete = 0 and id_manajemen = '$id_manajemen'");
         if (mysqli_num_rows($cekId) > 0) {
             $sqlDelete = "delete from akun_manajemen where id_manajemen = '$id_manajemen'";

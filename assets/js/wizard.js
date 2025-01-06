@@ -294,12 +294,34 @@ if (document.getElementById('data_akun_manajemen')) {
     });
   });
 
+  $(document).ready(function () {
+    $('#delAccount').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-del-account").style.display = "block";
+      document.getElementById("del-account").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/master/data-pengguna/hapus-akun.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-del-account").style.display = "none";
+          document.getElementById("del-account").style.display = "block";
+          $('.del-account').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    });
+  });
+
 
 }
 //js data-pengguna
 
 //js data-tim
-if (document.getElementById('data_tim')) {
+if (document.getElementById('data_area')) {
 
   $('#team_table').DataTable({
     'paging': true,
@@ -312,17 +334,17 @@ if (document.getElementById('data_tim')) {
 
   //tambah
   $(document).ready(function () {
-    $('#addTeam').on('show.bs.modal', function (e) {
+    $('#addArea').on('show.bs.modal', function (e) {
       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
-      document.getElementById("load-add-team").style.display = "block";
-      document.getElementById("add-team").style.display = "none";
+      document.getElementById("load-add-area").style.display = "block";
+      document.getElementById("add-area").style.display = "none";
       $.ajax({
         type: 'post',
-        url: 'dashboard/page/master/data-tim/tambah-tim.php',
+        url: 'dashboard/page/master/data-area/tambah-area.php',
         success: function (data) {
-          document.getElementById("load-add-team").style.display = "none";
-          document.getElementById("add-team").style.display = "block";
-          $('.add-team').html(data);
+          document.getElementById("load-add-area").style.display = "none";
+          document.getElementById("add-area").style.display = "block";
+          $('.add-area').html(data);
         }
       });
     });
@@ -332,19 +354,19 @@ if (document.getElementById('data_tim')) {
   });
 
   $(document).ready(function () {
-    $('#editTeam').on('show.bs.modal', function (e) {
+    $('#editArea').on('show.bs.modal', function (e) {
       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
-      document.getElementById("load-edit-team").style.display = "block";
-      document.getElementById("edit-team").style.display = "none";
+      document.getElementById("load-edit-area").style.display = "block";
+      document.getElementById("edit-area").style.display = "none";
       const id = $(e.relatedTarget).data('id');
       $.ajax({
         type: 'post',
-        url: 'dashboard/page/master/data-tim/edit-tim.php',
+        url: 'dashboard/page/master/data-area/edit-area.php',
         data: { 'id': id },
         success: function (data) {
-          document.getElementById("load-edit-team").style.display = "none";
-          document.getElementById("edit-team").style.display = "block";
-          $('.edit-team').html(data);
+          document.getElementById("load-edit-area").style.display = "none";
+          document.getElementById("edit-area").style.display = "block";
+          $('.edit-area').html(data);
         }
       });
     });
@@ -353,19 +375,19 @@ if (document.getElementById('data_tim')) {
     });
   });
   $(document).ready(function () {
-    $('#delTeam').on('show.bs.modal', function (e) {
+    $('#delArea').on('show.bs.modal', function (e) {
       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
-      document.getElementById("load-del-team").style.display = "block";
-      document.getElementById("del-team").style.display = "none";
+      document.getElementById("load-del-area").style.display = "block";
+      document.getElementById("del-area").style.display = "none";
       const id = $(e.relatedTarget).data('id');
       $.ajax({
         type: 'post',
-        url: 'dashboard/page/master/data-tim/hapus-tim.php',
+        url: 'dashboard/page/master/data-area/hapus-area.php',
         data: { 'id': id },
         success: function (data) {
-          document.getElementById("load-del-team").style.display = "none";
-          document.getElementById("del-team").style.display = "block";
-          $('.del-team').html(data);
+          document.getElementById("load-del-area").style.display = "none";
+          document.getElementById("del-area").style.display = "block";
+          $('.del-area').html(data);
         }
       });
     });
@@ -376,5 +398,107 @@ if (document.getElementById('data_tim')) {
 
 }
 //js data-tim
+
+//js data-program
+$(document).ready(function () {
+  $('#showYearProgram').on('show.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    document.getElementById("load-show-year-program").style.display = "block";
+    document.getElementById("show-year-program").style.display = "none";
+    $.ajax({
+      type: 'post',
+      url: 'dashboard/page/kegiatan/data-program-kerja/pilih-tahun-program.php',
+      success: function (data) {
+        // console.log(data);
+        document.getElementById("load-show-year-program").style.display = "none";
+        document.getElementById("show-year-program").style.display = "block";
+        $('.show-year-program').html(data);
+      }
+    });
+  });
+  $('.modal').on('hide.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  });
+});
+if (document.getElementById('data_program')) {
+
+  $('#program_table').DataTable({
+    'paging': true,
+    'lengthChange': true,
+    'searching': true,
+    'ordering': true,
+    'info': true,
+    // 'autoWidth': true
+  });
+
+
+  $(document).ready(function () {
+    $('#addProgram').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-add-program").style.display = "block";
+      document.getElementById("add-program").style.display = "none";
+      const token = $(e.relatedTarget).data('token');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-program-kerja/tambah-program.php',
+        data: { 'token': token },
+        success: function (data) {
+          document.getElementById("load-add-program").style.display = "none";
+          document.getElementById("add-program").style.display = "block";
+          $('.add-program').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    });
+  });
+
+  $(document).ready(function () {
+    $('#editProgram').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-edit-program").style.display = "block";
+      document.getElementById("edit-program").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-program-kerja/ubah-program.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-edit-program").style.display = "none";
+          document.getElementById("edit-program").style.display = "block";
+          $('.edit-program').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    });
+  });
+
+  $(document).ready(function () {
+    $('#delProgram').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-del-program").style.display = "block";
+      document.getElementById("del-program").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-program-kerja/hapus-program.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-del-program").style.display = "none";
+          document.getElementById("del-program").style.display = "block";
+          $('.del-program').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    });
+  });
+
+};
+//js data-program
 
 

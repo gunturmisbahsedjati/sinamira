@@ -1,0 +1,6 @@
+# File Logging System By: Animasiku Studio #
+[ 127.0.0.1 ] 03 01 2025 22: 07 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 04 01 2025 22: 55 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 06 01 2025 08: 36 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 06 01 2025 23: 00 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 06 01 2025 23: 00 - Yetty Widya Kusuma Santi, S.Sos., M.Si. berhasil login

@@ -66,13 +66,13 @@ if (!isset($_SESSION['status_login'])) {
                 ?>
             </select>
         </div>
-        <div class="form-group" id="optionTim" style="display: none;">
-            <label class="form-label">Pilih Akses Tim</label>
-            <select class="form-control border border-secondary" title="Pilih Hak Akses Tim...." name="akses_tim" id="akses_tim">
+        <div class="form-group" id="optionArea" style="display: none;">
+            <label class="form-label">Pilih Akses Area</label>
+            <select class="form-control border border-secondary" title="Pilih Hak Akses Area...." name="akses_area" id="akses_area">
                 <?php
-                $sqlLevel = mysqli_query($myConnection, "select id_tim, nama_tim from tb_tim where soft_delete = 0");
+                $sqlLevel = mysqli_query($myConnection, "select id_area, nama_area from tb_area where soft_delete = 0");
                 while ($viewLevel = mysqli_fetch_array($sqlLevel)) {
-                    echo '<option value="' . encrypt($viewLevel['id_tim']) . '">' . $viewLevel['nama_tim'] . '</option>';
+                    echo '<option value="' . encrypt($viewLevel['id_area']) . '">' . $viewLevel['nama_area'] . '</option>';
                 }
                 ?>
             </select>
@@ -93,10 +93,10 @@ if (!isset($_SESSION['status_login'])) {
             let getValueLevel = document.getElementById("level");
             let valueLevel = getValueLevel.value;
             if (valueLevel == 'TWpNNU9UTTVOMk14') {
-                $('#akses_tim').selectpicker();
-                document.getElementById("optionTim").style.display = "block";
+                $('#akses_area').selectpicker();
+                document.getElementById("optionArea").style.display = "block";
             } else {
-                document.getElementById("optionTim").style.display = "none";
+                document.getElementById("optionArea").style.display = "none";
             }
         });
         $('#pegawai').change(function() {

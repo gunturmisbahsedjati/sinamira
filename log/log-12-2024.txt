@@ -25,3 +25,7 @@
 [ 127.0.0.1 ] 26 12 2024 00: 30 - Estu Sofiatiningrum, S.Si berhasil login
 [ 127.0.0.1 ] 26 12 2024 00: 31 - Estu Sofiatiningrum, S.Si berhasil keluar dari sistem
 [ 127.0.0.1 ] 26 12 2024 00: 31 - Yetty Widya Kusuma Santi, S.Sos., M.Si. berhasil login
+[ 127.0.0.1 ] 26 12 2024 00: 36 - Yetty Widya Kusuma Santi, S.Sos., M.Si. berhasil keluar dari sistem
+[ 127.0.0.1 ] 26 12 2024 00: 36 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 27 12 2024 17: 13 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 31 12 2024 12: 58 - ANIMASIKU Studio berhasil login

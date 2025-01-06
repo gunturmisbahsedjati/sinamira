@@ -17,11 +17,18 @@ switch ($opsi) {
         require_once(PUB_DIR . 'page/master/data-pengguna/akun-aksi.php');
         break;
 
-    case 'teamList':
-        require_once(PUB_DIR . 'page/master/data-nama-tim.php');
+    case 'areaList':
+        require_once(PUB_DIR . 'page/master/data-area.php');
         break;
-    case 'setTeamList':
-        require_once(PUB_DIR . 'page/master/data-tim/tim-aksi.php');
+    case 'setAreaList':
+        require_once(PUB_DIR . 'page/master/data-area/area-aksi.php');
+        break;
+
+    case 'programList':
+        require_once(PUB_DIR . 'page/kegiatan/data-program-kerja.php');
+        break;
+    case 'setProgramList':
+        require_once(PUB_DIR . 'page/kegiatan/data-program-kerja/program-aksi.php');
         break;
 
         //signout

@@ -17,45 +17,46 @@ if (!isset($_SESSION['status_login'])) {
     exit;
 }
 if (isset($_POST['id'])) {
-    $id_tim = decrypt($_POST['id']);
-    $cekTim = mysqli_query($myConnection, "select * from tb_tim where id_tim = '$id_tim'");
+    $id_area = decrypt($_POST['id']);
+    $cekTim = mysqli_query($myConnection, "select * from tb_area where id_area = '$id_area'");
     if (mysqli_num_rows($cekTim) > 0) {
         $viewCekTim = mysqli_fetch_array($cekTim);
 ?>
-        <form action="setTeamList" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+        <form action="setAreaList" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
             <div class="modal-header">
-                <h4><i class="bx bx-folder-plus"></i> Hapus Nama Tim/Divisi</h4>
+                <h4><i class="bx bx-folder-plus"></i> Edit Nama Area</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="form-label">Nama Tim</label>
-                    <input type="text" class="form-control fw-bold" value="<?= $viewCekTim['nama_tim'] ?>" disabled aria-describedby="defaultFormControlHelp">
+                    <label class="form-label">Nama Area</label>
+                    <input type="text" class="form-control fw-bold" value="<?= $viewCekTim['nama_area'] ?>" name="nama_area" aria-describedby="defaultFormControlHelp">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Warna Tim</label>
-                    <input class="form-control" type="color" value="<?= $viewCekTim['warna_tim'] ?>" disabled>
+                    <input class="form-control" type="color" value="<?= $viewCekTim['warna_area'] ?>" name="colorpicker_value" id="colorpicker">
+                    <small class="text-danger">*Klik area warna untuk mengubah warna</small>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="hapus_data_tim">
-                        <label class="form-check-label" for="hapus_data_tim">Saya yakin akan menghapus <strong>Data Tim</strong>.</label>
+                        <input class="form-check-input" type="checkbox" id="edit_data_area">
+                        <label class="form-check-label" for="edit_data_area">Saya yakin akan melakukan perubahan <strong>Data Area</strong>.</label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" name="key" value="<?= encrypt($id_tim); ?>">
-                <button type="submit" name="delTeam" class="btn btn-info" id="hapusDataTim" disabled>Delete</button>
+                <input type="hidden" name="key" value="<?= encrypt($id_area); ?>">
+                <button type="submit" name="editArea" class="btn btn-info" id="updateDataTim" disabled>Update</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>
         <script type="text/javascript">
-            $('#hapus_data_tim').click(function() {
+            $('#edit_data_area').click(function() {
                 if ($(this).is(':checked')) {
 
-                    $('#hapusDataTim').removeAttr('disabled');
+                    $('#updateDataTim').removeAttr('disabled');
 
                 } else {
-                    $('#hapusDataTim').attr('disabled', true);
+                    $('#updateDataTim').attr('disabled', true);
                 }
             });
         </script>
