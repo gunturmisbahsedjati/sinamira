@@ -420,6 +420,7 @@ $(document).ready(function () {
     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
   });
 });
+
 if (document.getElementById('data_program')) {
 
   $('#program_table').DataTable({
@@ -500,5 +501,146 @@ if (document.getElementById('data_program')) {
 
 };
 //js data-program
+
+//js data-kegiatan
+$(document).ready(function () {
+  $('#showYearActivity').on('show.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    document.getElementById("load-show-year-activity").style.display = "block";
+    document.getElementById("show-year-activity").style.display = "none";
+    $.ajax({
+      type: 'post',
+      url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/pilih-tahun-kegiatan.php',
+      success: function (data) {
+        // console.log(data);
+        document.getElementById("load-show-year-activity").style.display = "none";
+        document.getElementById("show-year-activity").style.display = "block";
+        $('.show-year-activity').html(data);
+      }
+    });
+  });
+  $('.modal').on('hide.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  });
+});
+
+if (document.getElementById('data_kegiatan')) {
+  $('#activity_table').DataTable({
+    'paging': true,
+    'lengthChange': true,
+    'searching': true,
+    'ordering': true,
+    'info': true,
+    // 'autoWidth': true
+  });
+}
+if (document.getElementById('data_detail_program')) {
+
+  // $('#detail_program_table').DataTable({
+  //   'paging': false,
+  //   'lengthChange': false,
+  //   'searching': false,
+  //   'ordering': false,
+  //   'info': false,
+  //   'autoWidth': true
+  // });
+
+
+  $(document).ready(function () {
+    $('#addDetailActivity').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-add-detail-activity").style.display = "block";
+      document.getElementById("add-detail-activity").style.display = "none";
+      const token = $(e.relatedTarget).data('token');
+      const key = $(e.relatedTarget).data('key');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/tambah-kegiatan.php',
+        data: { 'token': token, 'key': key },
+        success: function (data) {
+          document.getElementById("load-add-detail-activity").style.display = "none";
+          document.getElementById("add-detail-activity").style.display = "block";
+          $('.add-detail-activity').html(data);
+          // $('#program').selectpicker();
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      // $('#program').selectpicker('destroy');
+    });
+  });
+
+  //   $(document).ready(function () {
+  //     $('#editProgram').on('show.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //       document.getElementById("load-edit-program").style.display = "block";
+  //       document.getElementById("edit-program").style.display = "none";
+  //       const id = $(e.relatedTarget).data('id');
+  //       $.ajax({
+  //         type: 'post',
+  //         url: 'dashboard/page/kegiatan/data-program-kerja/ubah-program.php',
+  //         data: { 'id': id },
+  //         success: function (data) {
+  //           document.getElementById("load-edit-program").style.display = "none";
+  //           document.getElementById("edit-program").style.display = "block";
+  //           $('.edit-program').html(data);
+  //         }
+  //       });
+  //     });
+  //     $('.modal').on('hide.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     });
+  //   });
+
+  //   $(document).ready(function () {
+  //     $('#delProgram').on('show.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //       document.getElementById("load-del-program").style.display = "block";
+  //       document.getElementById("del-program").style.display = "none";
+  //       const id = $(e.relatedTarget).data('id');
+  //       $.ajax({
+  //         type: 'post',
+  //         url: 'dashboard/page/kegiatan/data-program-kerja/hapus-program.php',
+  //         data: { 'id': id },
+  //         success: function (data) {
+  //           document.getElementById("load-del-program").style.display = "none";
+  //           document.getElementById("del-program").style.display = "block";
+  //           $('.del-program').html(data);
+  //         }
+  //       });
+  //     });
+  //     $('.modal').on('hide.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     });
+  //   });
+
+};
+//js data-kegiatan
+
+
+// common fitur
+$(document).ready(function () {
+  $('#changePass').on('show.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+    document.getElementById("load-change-pass").style.display = "block";
+    document.getElementById("change-pass").style.display = "none";
+    const url = $(e.relatedTarget).data('url');
+    $.ajax({
+      type: 'post',
+      url: 'dashboard/page/common-fitur/ganti-pass.php',
+      data: { 'url': url },
+      success: function (data) {
+        document.getElementById("load-change-pass").style.display = "none";
+        document.getElementById("change-pass").style.display = "block";
+        $('.change-pass').html(data);
+      }
+    });
+  });
+  $('.modal').on('hide.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  });
+});
+// common fitur
 
 

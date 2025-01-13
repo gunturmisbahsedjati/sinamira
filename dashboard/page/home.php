@@ -1,8 +1,23 @@
+<?php
+if (isset($_SESSION['alert'])) : ?>
+  <script>
+    let Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    })
+    <?php
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+    ?>
+  </script>
+<?php endif ?>
 <div class="row">
   <!-- [ sample-page ] start -->
   <div class="col-md-12 col-lg-6">
     <div class="card">
-
       <div class="card-body">
 
         <h5 class="card-title mb-2">Hai, <?= $_SESSION['nama_akun'] ?> ! 👋</h5>

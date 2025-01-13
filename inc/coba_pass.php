@@ -1,6 +1,6 @@
 <?php
 include 'inc.library.php';
 
-$pass = 'as';
+$pass = 'TWpNNU9TNHZPVGRqTVE9PQ==';
 
-echo encrypt($pass);
+echo decrypt($pass);

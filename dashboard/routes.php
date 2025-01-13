@@ -30,7 +30,20 @@ switch ($opsi) {
     case 'setProgramList':
         require_once(PUB_DIR . 'page/kegiatan/data-program-kerja/program-aksi.php');
         break;
+    case 'activityList':
+        require_once(PUB_DIR . 'page/kegiatan/data-kegiatan-program-kerja.php');
+        break;
+    case 'detailActivityList':
+        require_once(PUB_DIR . 'page/kegiatan/data-kegiatan-program-kerja/detail-kegiatan-data-program-kerja.php');
+        break;
+    case 'setActivityList':
+        require_once(PUB_DIR . 'page/kegiatan/data-kegiatan-program-kerja/kegiatan-aksi.php');
+        break;
 
+        //common fitur
+    case 'setCommonFeature':
+        require_once(PUB_DIR . 'page/common-fitur/common-fitur-aksi.php');
+        break;
         //signout
     case 'logout':
         require_once(PUB_DIR . '../signout.php');

@@ -39,7 +39,7 @@
                         <a href="#" data-toggle="modal" data-target="#showYearProgram" class="pc-link "><span class="pc-micon"><i data-feather="server"></i></span><span class="pc-mtext">Data Program Kerja</span></a>
                     </li>
                     <li class="pc-item">
-                        <a href="#" data-toggle="modal" data-target="#showYearProagram" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
+                        <a href="#" data-toggle="modal" data-target="#showYearActivity" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
                     </li>
                 <?php
                     //anggota panel
@@ -51,7 +51,7 @@
                         <a href="#" data-toggle="modal" data-target="#showYearProgram" class="pc-link "><span class="pc-micon"><i data-feather="server"></i></span><span class="pc-mtext">Data Program Kerja</span></a>
                     </li>
                     <li class="pc-item">
-                        <a href="#" data-toggle="modal" data-target="#showYearProagram" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
+                        <a href="#" data-toggle="modal" data-target="#showYearActivity" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
                     </li>
                 <?php } ?>
 
@@ -72,6 +72,19 @@
                 </div>
             </div>
             <div class="show-year-program" id="show-year-program"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="showYearActivity" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id="load-show-year-activity" style="display: none;">
+                <div class="modal-body">
+                    <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
+                    loading......
+                </div>
+            </div>
+            <div class="show-year-activity" id="show-year-activity"></div>
         </div>
     </div>
 </div>

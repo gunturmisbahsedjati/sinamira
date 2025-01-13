@@ -371,6 +371,13 @@ function bersihkan($string)
 	return $hasil;
 }
 
+function bersihkanInsert($string)
+{
+	$find = array("'", "`");
+	$hasil = str_replace($find, " ", $string);
+	return $hasil;
+}
+
 //pengecekean file pdf
 $max_size_pdf    = 1000 * 1000;
 $maxsizepdf = 2097152;
@@ -452,4 +459,11 @@ function singkatString($string, $repl, $limit)
 	} else {
 		return $string;
 	}
+}
+
+
+
+function getUrlNow()
+{
+	return ltrim($_SERVER['REQUEST_URI'], '/');
 }

@@ -1,3 +1,6 @@
+<?php
+include './inc/inc.library.php'
+?>
 <header class="pc-header ">
     <div class="header-wrapper">
         <!-- <div class="mr-auto pc-mob-drp">
@@ -68,8 +71,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pc-h-dropdown">
-
-                        <a href="#!" class="dropdown-item">
+                        <a href="#!" class="dropdown-item" data-toggle="modal" data-target="#changePass" data-url="<?= encrypt(getUrlNow()); ?>">
                             <i data-feather="user"></i>
                             <span>Ganti Kata Sandi</span>
                         </a>
@@ -86,6 +88,19 @@
 
     <!-- modal -->
 </header>
+<div class="modal fade" id="changePass" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-modal="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div id="load-change-pass" style="display: none;">
+                <div class="modal-body">
+                    <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
+                    loading......
+                </div>
+            </div>
+            <div class="change-pass" id="change-pass"></div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">

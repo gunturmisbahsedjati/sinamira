@@ -34,48 +34,51 @@ if (isset($_SESSION['alert'])) : ?>
 <?php
 if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
 ?>
-  <h4 class="text-secondary" id="data_program">Data Program Kerja Tahun <?= decrypt($_GET['_token']) ?></h4>
+  <h4 class="text-secondary" id="data_kegiatan">Data Kegiatan Program Kerja Tahun <?= decrypt($_GET['_token']) ?></h4>
   <div class="row">
     <!-- [ sample-page ] start -->
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <div class="float-right">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProgram" data-token="<?= $_GET['_token'] ?>"><i data-feather="plus-circle"></i> Tambah</button>
-          </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table id="program_table" class="table table-bordered table-hover" width="100%">
+            <table id="activity_table" class="table table-bordered table-hover" width="100%">
               <thead>
                 <tr>
                   <th class="text-center align-middle">No.</th>
                   <th class="text-center align-middle">Area</th>
-                  <th class="text-center align-middle">Program</th>
-                  <th class="text-center align-middle">Jenis</th>
+                  <th class="text-center align-middle">Jml. Program</th>
+                  <th class="text-center align-middle">Jml. Kegiatan</th>
+                  <th class="text-center align-middle">Progress</th>
                   <th class="text-center align-middle">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no = 1;
-                $sqlProgram = mysqli_query($myConnection, "select tb_program.*, tb_area.nama_area, tb_area.warna_area, tb_jenis_program.jenis_program
-                                          from tb_program
-                                          left join tb_area on tb_area.id_area = tb_program.id_area
-                                          left join tb_jenis_program on tb_jenis_program.id_jenis_program = tb_program.id_jenis_program
-                                          where tb_program.soft_delete = 0");
-                while ($showProgram = mysqli_fetch_array($sqlProgram)) {
+                $sqlArea = mysqli_query($myConnection, "select tb_area.*,
+                (select count(id_program) from tb_program where id_area = tb_area.id_area and soft_delete = 0) as jml_program,
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0) as jml_kegiatan
+                from tb_area
+                where tb_area.soft_delete = 0 ");
+                while ($viewArea = mysqli_fetch_array($sqlArea)) {
                 ?>
                   <tr>
                     <td class="text-center"><?= $no++ ?></td>
                     <td>
-                      <i data-feather="square" style="fill: <?= $showProgram['warna_area'] ?>;color:transparent"></i> <?= $showProgram['nama_area'] ?>
+                      <i data-feather="square" style="fill: <?= $viewArea['warna_area'] ?>;color:transparent"></i> <?= $viewArea['nama_area'] ?>
                     </td>
-                    <td style="word-wrap:break-word;white-space:normal"><?= $showProgram['nama_program'] ?></td>
-                    <td><?= $showProgram['jenis_program'] ?></td>
+                    <td class="text-center"><?= $viewArea['jml_program'] ?></td>
+                    <td class="text-center"><?= $viewArea['jml_kegiatan'] ?></td>
+                    <td class="text-center">
+                      <label class="form-label">60%</label>
+                      <div class="progress border border-secondary">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%; background-color:<?= $viewArea['warna_area'] ?> !important;"></div>
+                      </div>
+                    </td>
                     <td class="text-center text-nowarp">
-                      <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="<?= encrypt($showProgram['id_program']) ?>"><i data-feather="edit"></i></button>
-                      <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="<?= encrypt($showProgram['id_program']) ?>"><i data-feather="trash"></i></button>
+                      <a href="detailActivityList?_token=<?= $_GET['_token'] ?>&_key=<?= encrypt($viewArea['id_area']) ?>" class="btn btn-primary btn-xs" title="cek program area"><i data-feather="search"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -87,46 +90,6 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
       </div>
     </div>
     <!-- [ sample-page ] end -->
-  </div>
-
-  <div class="modal fade" id="addProgram" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div id="load-add-program" style="display: none;">
-          <div class="modal-body">
-            <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
-            loading......
-          </div>
-        </div>
-        <div class="add-program" id="add-program"></div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="editProgram" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div id="load-edit-program" style="display: none;">
-          <div class="modal-body">
-            <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
-            loading......
-          </div>
-        </div>
-        <div class="edit-program" id="edit-program"></div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="delProgram" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleDelModal" aria-hidden="true" aria-modal="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div id="load-del-program" style="display: none;">
-          <div class="modal-body">
-            <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
-            loading......
-          </div>
-        </div>
-        <div class="del-program" id="del-program"></div>
-      </div>
-    </div>
   </div>
 <?php
 } elseif (isset($_GET['_token']) && ($level == 3)) {
