@@ -19,3 +19,5 @@
 [ 127.0.0.1 ] 09 01 2025 22: 45 - ANIMASIKU Studio berhasil login
 [ 127.0.0.1 ] 10 01 2025 20: 49 - ANIMASIKU Studio berhasil login
 [ 127.0.0.1 ] 12 01 2025 17: 25 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 13 01 2025 18: 12 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 14 01 2025 18: 13 - ANIMASIKU Studio berhasil login

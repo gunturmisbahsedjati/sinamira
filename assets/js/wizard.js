@@ -206,7 +206,7 @@ function ValidateSize(file) {
   }
 }
 
-function ValidateSizePengajuan(file) {
+function ValidateSize2MB(file) {
   var FileSize = file.files[0].size;
   if (FileSize > 2097152) {
     Swal.fire({
@@ -255,10 +255,11 @@ function ValidateSingleInputExcel(oInput) {
   }
   return true;
 };
-$(".custom-file-input").on("change", function () {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
+
+// $(".custom-file-input").on("change", function () {
+//   var fileName = $(this).val().split("\\").pop();
+//   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+// });
 
 
 //js data-pengguna
@@ -568,6 +569,29 @@ if (document.getElementById('data_detail_program')) {
     $('.modal').on('hide.bs.modal', function (e) {
       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
       // $('#program').selectpicker('destroy');
+    });
+  });
+
+  $(document).ready(function () {
+    $('#uploadFileActivity').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-lg');
+      document.getElementById("load-upload-file-activity").style.display = "block";
+      document.getElementById("upload-file-activity").style.display = "none";
+      const token = $(e.relatedTarget).data('token');
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/upload-dokumen-detail-kegiatan.php',
+        data: { 'token': token, 'id': id },
+        success: function (data) {
+          document.getElementById("load-upload-file-activity").style.display = "none";
+          document.getElementById("upload-file-activity").style.display = "block";
+          $('.upload-file-activity').html(data);
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
     });
   });
 

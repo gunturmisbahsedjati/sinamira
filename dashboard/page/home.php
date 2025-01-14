@@ -20,9 +20,9 @@ if (isset($_SESSION['alert'])) : ?>
     <div class="card">
       <div class="card-body">
 
-        <h5 class="card-title mb-2">Hai, <?= $_SESSION['nama_akun'] ?> ! 👋</h5>
+        <h5 class="card-title mb-2">Hai, <?= $_SESSION['nama_akun'] ?> ! 👋😉</h5>
         <p class="mb-4">
-          <span style="font-size: x-large;" class="fw-bold text-black">Si-NaMiRA 😉</span><br>Sistem Manajemen Monitoring Program Kerja<br>BBPMP Provinsi Jawa Timur<br>Tahun <?= date('Y') ?>
+          <span style="font-size: x-large;" class="fw-bold text-black">Si-NaMiRA</span><br>Sistem Manajemen Monitoring Program Kerja<br>BBPMP Provinsi Jawa Timur<br>Tahun <?= date('Y') ?>
         </p>
 
       </div>

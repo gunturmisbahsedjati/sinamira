@@ -2193,13 +2193,34 @@ textarea.form-control {
     padding-left: 1.25rem;
 }
 
-/* .form-check-input {
+/* .form-check-input-file {
 
     position: absolute;
     margin-top: 0.3rem;
     margin-left: -1.25rem;
     border: 2px solid rgb(128, 0, 255);
 } */
+
+
+.form-check-input-file {
+    --bs-form-check-bg: #fff;
+    flex-shrink: 0;
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.135em;
+    vertical-align: top;
+    appearance: none;
+    background-color: var(--bs-form-check-bg);
+    background-image: var(--bs-form-check-bg-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 2px solid #9d9aa0;
+  }
+
+  .form-check-input-file[type=checkbox] {
+    border-radius: 0.125em;
+  }
 
 .form-check-input {
     --bs-form-check-bg: #fff;
@@ -2216,6 +2237,27 @@ textarea.form-control {
     background-size: contain;
     border: 2px solid #9d9aa0;
   }
+  .form-check-input-file:active {
+    filter: brightness(90%);
+  }
+  .form-check-input-file:focus {
+    border-color: #c8aafe;
+    outline: 0;
+    box-shadow: 0 0 0.25rem 0.05rem rgba(144, 85, 253, 0.1);
+  }
+  .form-check-input-file:checked {
+    background-color: #666EE8;
+    border-color: #666EE8;
+  }
+  .form-check-input-file:checked[type=checkbox] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 10l3 3l6-6'/%3e%3c/svg%3e");
+  }
+  .form-check-input-file[type=checkbox]:indeterminate {
+    background-color: #666EE8;
+    border-color: #666EE8;
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10h8'/%3e%3c/svg%3e");
+  }
+
 
 .form-check-input[type=checkbox] {
     border-radius: 0.125em;
@@ -6700,6 +6742,10 @@ button.bg-primary:focus {
 
 .bg-secondary {
     background-color: #6c757d !important;
+}
+
+.bg-secondary2 {
+    background-color: #eaeaea !important;
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
