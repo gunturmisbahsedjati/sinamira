@@ -46,12 +46,18 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
             <table id="activity_table" class="table table-bordered table-hover" width="100%">
               <thead>
                 <tr>
-                  <th class="text-center align-middle">No.</th>
-                  <th class="text-center align-middle">Area</th>
-                  <th class="text-center align-middle">Jml. Program</th>
-                  <th class="text-center align-middle">Jml. Kegiatan</th>
-                  <th class="text-center align-middle">Progress</th>
-                  <th class="text-center align-middle">Aksi</th>
+                  <th class="text-center align-middle" rowspan="2">No.</th>
+                  <th class="text-center align-middle" rowspan="2">Area<br>Pelaksana</th>
+                  <th class="text-center align-middle" colspan="2">Jumlah</th>
+                  <th class="text-center align-middle" colspan="3">Progress Kegiatan</th>
+                  <th class="text-center align-middle" rowspan="2">Aksi</th>
+                </tr>
+                <tr>
+                  <th class="text-center align-middle">Program<br>Kerja</th>
+                  <th class="text-center align-middle">Kegiatan</th>
+                  <th class="text-center align-middle">Belum<br>Terlaksana</th>
+                  <th class="text-center align-middle">Sudah<br>Terlaksana</th>
+                  <th class="text-center align-middle">Unggah<br>Dokumen</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,7 +65,9 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                 $no = 1;
                 $sqlArea = mysqli_query($myConnection, "select tb_area.*,
                 (select count(id_program) from tb_program where id_area = tb_area.id_area and soft_delete = 0) as jml_program,
-                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0) as jml_kegiatan
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0) as jml_kegiatan,
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and status_kegiatan = 0) as jml_belum,
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and status_kegiatan = 1) as jml_sudah
                 from tb_area
                 where tb_area.soft_delete = 0 ");
                 while ($viewArea = mysqli_fetch_array($sqlArea)) {
@@ -71,6 +79,8 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                     </td>
                     <td class="text-center"><?= $viewArea['jml_program'] ?></td>
                     <td class="text-center"><?= $viewArea['jml_kegiatan'] ?></td>
+                    <td class="text-center"><?= $viewArea['jml_belum'] ?></td>
+                    <td class="text-center"><?= $viewArea['jml_sudah'] ?></td>
                     <td class="text-center">
                       <label class="form-label">60%</label>
                       <div class="progress border border-secondary">

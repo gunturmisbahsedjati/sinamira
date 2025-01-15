@@ -86,7 +86,11 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
               </thead>
               <tbody>
                 <?php
-                $cekKegiatan = mysqli_query($myConnection, "select * from tb_kegiatan where id_program = '$id_program' and id_area = '$id_area' and soft_delete = 0");
+                $cekKegiatan = mysqli_query($myConnection, "select tb_kegiatan.*, tb_status_kegiatan.deskripsi, tb_status_kegiatan.warna 
+                from tb_kegiatan 
+                left join tb_status_kegiatan on tb_status_kegiatan.status = tb_kegiatan.status_kegiatan
+                where tb_kegiatan.id_program = '$id_program' and tb_kegiatan.id_area = '$id_area' and tb_kegiatan.soft_delete = 0
+                order by tb_kegiatan.tgl_awal, tb_kegiatan.tgl_akhir asc");
                 if (mysqli_num_rows($cekKegiatan) > 0) {
                   $no = 1;
                   while ($showKegiatan = mysqli_fetch_array($cekKegiatan)) {
@@ -225,7 +229,7 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                     <tr>
                       <td><?= $no++ ?></td>
                       <td class="text-center"><?= $tgl_awal . '<br>s/d<br>' . $tgl_akhir ?></td>
-                      <td style="white-space: pre-line;"><?= $showKegiatan['nama_kegiatan'] ?></td>
+                      <td style="white-space: pre-line;"><?= $showKegiatan['nama_kegiatan'] . '<br><i class="font-weight-bold text-' . $showKegiatan['warna'] . '">Status : ' . $showKegiatan['deskripsi'] . '</i>' ?></td>
                       <td class="text-center <?= $bgSU ?>"><?= $isiSU ?></td>
                       <td class="text-center <?= $bgSK ?>"><?= $isiSK ?></td>
                       <td class="text-center <?= $bgPanduan ?>"><?= $isiPanduan ?></td>
@@ -235,6 +239,7 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       <td class="text-center <?= $bgHK ?>"><?= $isiHK ?></td>
                       <td class="text-center <?= $bgDok ?>"><?= $isiDok ?></td>
                       <td class="text-center">
+                        <button type="button" class="btn btn-success btn-xs" title="Ubah Status Kegiatan" data-toggle="modal" data-target="#updateStatusActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="star"></i></button>
                         <button type="button" class="btn btn-primary btn-xs" title="Upload File Kegiatan" data-toggle="modal" data-target="#uploadFileActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="upload"></i></button>
                         <button type="button" class="btn btn-info btn-xs" title="Ubah Data Kegiatan" data-toggle="modal" data-target="#editDetailActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="edit"></i></button>
                         <button type="button" class="btn btn-danger btn-xs" title="Hapus Data Kegiatan" data-toggle="modal" data-target="#delDetailActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="trash"></i></button>

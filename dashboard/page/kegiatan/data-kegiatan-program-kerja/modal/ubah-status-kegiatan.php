@@ -47,7 +47,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
         </style>
         <form action="setActivityList" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
             <div class="modal-header">
-                <h4><i class="bx bx-folder-plus"></i> Hapus Kegiatan</h4>
+                <h4><i class="bx bx-folder-plus"></i> Ubah Status Kegiatan</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
@@ -71,10 +71,22 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     <label class="form-label font-weight-bold">Keterangan Tambahan</label>
                     <p><?= $showFileKegiatan['ket'] == '' || $showFileKegiatan['ket'] == NULL ? '-' : $showFileKegiatan['ket'] ?></p>
                 </div>
+                <div class="form-group">
+                    <label class="form-label font-weight-bold">Status Kegiatan</label>
+                    <select name="status_keg" id="" class="form-control">
+                        <?php
+                        $sqlStatus = mysqli_query($myConnection, "select * from tb_status_kegiatan");
+                        while ($viewStatus = mysqli_fetch_array($sqlStatus)) {
+                            $selected = ($viewStatus['status'] == $showFileKegiatan['status_kegiatan']) ? 'selected' : '';
+                            echo '<option value="' . encrypt($viewStatus['status']) . '" ' . $selected . '>' . $viewStatus['deskripsi'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
                 <div class="form-group mt-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="del-kegiatan">
-                        <label class="form-check-label" for="del-kegiatan">Saya yakin akan menghapus <strong>Data Kegiatan</strong>.</label>
+                        <input class="form-check-input" type="checkbox" id="status-kegiatan">
+                        <label class="form-check-label" for="status-kegiatan">Saya yakin akan mengubah <strong>Status Kegiatan</strong>.</label>
                     </div>
                 </div>
             </div>
@@ -82,16 +94,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
             <div class="modal-footer">
                 <input type="hidden" name="_id" value="<?= encrypt($showFileKegiatan['id_kegiatan']) ?>">
                 <input type="hidden" name="_key" value="<?= $_POST['token'] ?>">
-                <button type="submit" name="delActivity" class="btn btn-danger" id="hapusKeg" disabled>Hapus</button>
+                <button type="submit" name="updateStatusActivity" class="btn btn-danger" id="statusKeg" disabled>Hapus</button>
             </div>
         </form>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#del-kegiatan').click(function() {
+                $('#status-kegiatan').click(function() {
                     if ($(this).is(':checked')) {
-                        $('#hapusKeg').removeAttr('disabled');
+                        $('#statusKeg').removeAttr('disabled');
                     } else {
-                        $('#hapusKeg').attr('disabled', true);
+                        $('#statusKeg').attr('disabled', true);
                     }
                 });
             });

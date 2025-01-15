@@ -68,7 +68,8 @@ if ($cek_status_akun == 0) {
     <script src="assets/js/plugins/sweetalert/sweetalert2.js"></script>
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/js/plugins/fullcalendar/fullcalendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/plugins/fullcalendar/fullcalendar.print.css" media='print'>
     <link rel="stylesheet" href="assets/css/style.css?rev=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/customizer.css">
 
@@ -165,7 +166,10 @@ if ($cek_status_akun == 0) {
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap4.js"></script>
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-
+    <script src="assets/js/plugins/moment/moment.min.js"></script>
+    <script src="assets/js/plugins/fullcalendar/fullcalendar.js"></script>
+    <script src="assets/js/plugins/fullcalendar/locale-all.js"></script>
+    <script src="assets/js/plugins/fullcalendar/gcal.js"></script>
     <script src="assets/js/wizard.js?rev=<?php echo time(); ?>"></script>
 </body>
 

@@ -34,3 +34,15 @@ if (isset($_SESSION['alert'])) : ?>
   </div>
   <!-- [ sample-page ] end -->
 </div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card border border-primary">
+      <div class="card-header text-center bg-primary">
+        <h4 class="font-weight-bold text-white">Kalender SINaMiRA</h4>
+      </div>
+      <div class="card-body text-center">
+        <div id='calendar'></div>
+      </div>
+    </div>
+  </div>
+</div>
