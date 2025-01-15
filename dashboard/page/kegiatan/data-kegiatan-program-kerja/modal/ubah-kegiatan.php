@@ -52,7 +52,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
             <div class="modal-body">
                 <div class="form-group">
                     <label class="form-label">Program Kerja Area</label>
-                    <select class="form-control border border-secondary program" title="Pilih program...." data-live-search="true" data-size="5" name="program" id="program">
+                    <select class="form-control border border-secondary program" title="Pilih program...." data-live-search="true" data-size="5" name="program" id="program-edit">
                         <?php
                         $id_area = $showFileKegiatan['id_area'];
                         $sqlCekProgram = mysqli_query($myConnection, "select id_program, nama_program from tb_program where id_area = '$id_area' and soft_delete = 0");
@@ -73,13 +73,13 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Tanggal Awal</label>
-                            <input class="form-control border-secondary" id="tgl-awal" placeholder="Awal Kegiatan" name="tgl_awal" value="<?= $tgl_awal ?>" />
+                            <input class="form-control border-secondary" id="tgl-awal-edit" placeholder="Awal Kegiatan" name="tgl_awal" value="<?= $tgl_awal ?>" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Tanggal Akhir</label>
-                            <input class="form-control border-secondary" id="tgl-akhir" placeholder="Akhir Kegiatan" name="tgl_akhir" value="<?= $tgl_akhir ?>" />
+                            <input class="form-control border-secondary" id="tgl-akhir-edit" placeholder="Akhir Kegiatan" name="tgl_akhir" value="<?= $tgl_akhir ?>" />
                         </div>
                     </div>
                 </div>
@@ -87,26 +87,40 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     <label for="ket">Keterangan Tambahan <i>(Opsional)</i></label>
                     <textarea class="form-control border border-secondary" id="ket" name="ket" rows="3"><?= $showFileKegiatan['ket'] ?></textarea>
                 </div>
+                <div class="form-group mt-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="edit-kegiatan">
+                        <label class="form-check-label" for="edit-kegiatan">Saya yakin akan mengubah <strong>Data Kegiatan</strong>.</label>
+                    </div>
+                </div>
             </div>
+
             <div class="modal-footer">
-                <input type="hidden" name="_token" value="<?= $_POST['token'] ?>">
-                <input type="hidden" name="_key" value="<?= $_POST['key'] ?>">
-                <button type="submit" name="addActivity" class="btn btn-success">Simpan</button>
+                <input type="hidden" name="_id" value="<?= encrypt($showFileKegiatan['id_kegiatan']) ?>">
+                <input type="hidden" name="_key" value="<?= $_POST['token'] ?>">
+                <button type="submit" name="editActivity" class="btn btn-success" id="updateKeg" disabled>Update</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#program').selectpicker('destroy');
-                $('#program').selectpicker();
+                $('#program-edit').selectpicker('destroy');
+                $('#program-edit').selectpicker();
+                $('#edit-kegiatan').click(function() {
+                    if ($(this).is(':checked')) {
+                        $('#updateKeg').removeAttr('disabled');
+                    } else {
+                        $('#updateKeg').attr('disabled', true);
+                    }
+                });
             });
             $(function() {
 
-                $('#tgl-awal').datepicker({
+                $('#tgl-awal-edit').datepicker({
                     uiLibrary: 'bootstrap4',
                     format: 'dd-mm-yyyy'
                 });
-                $('#tgl-akhir').datepicker({
+                $('#tgl-akhir-edit').datepicker({
                     uiLibrary: 'bootstrap4',
                     format: 'dd-mm-yyyy'
                 });

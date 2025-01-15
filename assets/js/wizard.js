@@ -598,6 +598,31 @@ if (document.getElementById('data_detail_program')) {
   });
 
   $(document).ready(function () {
+    $('#delDetailActivity').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-del-detail-activity").style.display = "block";
+      document.getElementById("del-detail-activity").style.display = "none";
+      const token = $(e.relatedTarget).data('token');
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/hapus-kegiatan.php',
+        data: { 'token': token, 'id': id },
+        success: function (data) {
+          document.getElementById("load-del-detail-activity").style.display = "none";
+          document.getElementById("del-detail-activity").style.display = "block";
+          $('.del-detail-activity').html(data);
+          // $('#program').selectpicker();
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      // $('#program').selectpicker('destroy');
+    });
+  });
+
+  $(document).ready(function () {
     $('#uploadFileActivity').on('show.bs.modal', function (e) {
       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-lg');
       document.getElementById("load-upload-file-activity").style.display = "block";

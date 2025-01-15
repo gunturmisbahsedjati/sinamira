@@ -196,7 +196,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
             <div class="modal-footer">
                 <input type="hidden" name="_token" value="<?= $_POST['token'] ?>">
                 <input type="hidden" name="_key" value="<?= $_POST['id'] ?>">
-                <button type="submit" name="addActivity" class="btn btn-success" disabled id="upload-btn">Simpan</button>
+                <button type="submit" name="" class="btn btn-success" disabled id="upload-btn">Simpan</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>

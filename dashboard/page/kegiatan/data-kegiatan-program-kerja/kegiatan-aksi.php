@@ -23,13 +23,6 @@ if (in_array(1, $arrayAkses)) {
         $id_area = decrypt(mysqli_escape_string($myConnection, $_POST['_token']));
         $thn = decrypt(mysqli_escape_string($myConnection, $_POST['_key']));
 
-        // echo $id_area . '<br>';
-        // echo $thn . '<br>';
-        // echo $id_program . '<br>';
-        // echo $nama_kegiatan . '<br>';
-        // echo $tgl_awal . '<br>';
-        // echo $tgl_akhir . '<br>';
-
         $insertKegiatan = mysqli_query($myConnection, "insert into tb_kegiatan (id_kegiatan, id_program, nama_kegiatan, tgl_awal, tgl_akhir, thn_kegiatan, id_area, ket, created_by, created_date) values ('$code2', '$id_program','$nama_kegiatan','$tgl_awal','$tgl_akhir','$thn','$id_area','$ket','$created_by', NOW())");
         if ($insertKegiatan) {
             $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Kegiatan berhasil ditambahkan'})";
@@ -38,49 +31,50 @@ if (in_array(1, $arrayAkses)) {
             $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Kegiatan gagal ditambahkan'})";
             echo '<script> window.location="detailActivityList?_token=' . encrypt($thn) . '&_key=' . encrypt($id_area) . '"; </script>';
         }
-    } elseif (isset($_POST['editProgram'])) {
-        $nama_program = htmlspecialchars(mysqli_escape_string($myConnection, $_POST['nama_program']));
-        $id_jenis_program = decrypt(mysqli_escape_string($myConnection, $_POST['jenis_program']));
-        $id_area_program = decrypt(mysqli_escape_string($myConnection, $_POST['area_program']));
-        $ket = htmlspecialchars(mysqli_escape_string($myConnection, $_POST['ket']));
-        $id_program = decrypt(mysqli_escape_string($myConnection, $_POST['_token']));
+    } elseif (isset($_POST['editActivity']) && isset($_POST['_id'])  && isset($_POST['_key'])) {
+        $created_by = $_SESSION['id'];
+        $id_program = decrypt(mysqli_escape_string($myConnection, $_POST['program']));
+        $nama_kegiatan = htmlspecialchars(mysqli_escape_string($myConnection, bersihkanInsert($_POST['nama_kegiatan'])));
+        $tgl_awal = substr($_POST['tgl_awal'], 6, 4) . '-' . substr($_POST['tgl_awal'], 3, 2) . '-' . substr($_POST['tgl_awal'], 0, 2);
+        $tgl_akhir = substr($_POST['tgl_akhir'], 6, 4) . '-' . substr($_POST['tgl_akhir'], 3, 2) . '-' . substr($_POST['tgl_akhir'], 0, 2) . ' 23:59:59';
+        $ket = htmlspecialchars(mysqli_escape_string($myConnection, bersihkanInsert($_POST['ket'])));
 
-        $sqlCekProgram = mysqli_query($myConnection, "select * from tb_program where id_program = '$id_program' and soft_delete = 0");
-        if (mysqli_num_rows($sqlCekProgram) > 0) {
-            $viewCekProgram = mysqli_fetch_array($sqlCekProgram);
-            $updateProgram = mysqli_query($myConnection, "update tb_program set 
-            nama_program = '$nama_program',
-            id_jenis_program = '$id_jenis_program',
-            id_area = '$id_area_program',
-            ket = '$ket'
-            where id_program = '$id_program' and soft_delete = 0");
-            if ($updateProgram) {
-                $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Tim berhasil diubah'})";
-                echo '<script> window.location="programList?_token=' . encrypt($viewCekProgram['thn_program']) . '"; </script>';
+        $id_kegiatan = decrypt(mysqli_escape_string($myConnection, $_POST['_id']));
+        $thn = decrypt(mysqli_escape_string($myConnection, $_POST['_key']));
+
+        $cekKegiatan = mysqli_query($myConnection, "select * from tb_kegiatan where id_kegiatan = '$id_kegiatan' and thn_kegiatan = '$thn' and soft_delete = 0");
+        if (mysqli_num_rows($cekKegiatan) > 0) {
+            $viewCekKegiatan = mysqli_fetch_array($cekKegiatan);
+            $updateKegiatan = mysqli_query($myConnection, "update tb_kegiatan set id_program = '$id_program', nama_kegiatan = '$nama_kegiatan', tgl_awal = '$tgl_awal', tgl_akhir = '$tgl_akhir', ket = '$ket' where id_kegiatan = '$id_kegiatan' and thn_kegiatan = '$thn' and soft_delete = 0");
+            if ($updateKegiatan) {
+                $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Kegiatan berhasil diupdate'})";
+                echo '<script> window.location="detailActivityList?_token=' . encrypt($thn) . '&_key=' . encrypt($viewCekKegiatan['id_area']) . '"; </script>';
             } else {
-                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Tim gagal diubah'})";
-                echo '<script> window.location="programList?_token=' . encrypt($viewCekProgram['thn_program']) . '"; </script>';
+                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Kegiatan gagal diupdate'})";
+                echo '<script> window.location="detailActivityList?_token=' . encrypt($thn) . '&_key=' . encrypt($viewCekKegiatan['id_area']) . '"; </script>';
             }
         } else {
             $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'SQL Injection Detected !'})";
-            echo '<script> window.location="programList"; </script>';
+            echo '<script> window.location="detailActivityList"; </script>';
         }
-    } elseif (isset($_POST['delProgram'])) {
-        $id_program = decrypt($_POST['_token']);
-        $sqlID = mysqli_query($myConnection, "select * from tb_program where id_program = '$id_program' and soft_delete = 0");
-        if (mysqli_num_rows($sqlID) > 0) {
-            $viewCekProgram = mysqli_fetch_array($sqlID);
-            $deleteProgram = mysqli_query($myConnection, "update tb_program set soft_delete = 1 where id_program = '$id_program' and soft_delete = 0");
-            if ($deleteProgram) {
-                $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Program berhasil dihapus'})";
-                echo '<script> window.location="programList?_token=' . encrypt($viewCekProgram['thn_program']) . '"; </script>';
+    } elseif (isset($_POST['delActivity']) && isset($_POST['_id'])  && isset($_POST['_key'])) {
+        $id_kegiatan = decrypt(mysqli_escape_string($myConnection, $_POST['_id']));
+        $thn = decrypt(mysqli_escape_string($myConnection, $_POST['_key']));
+
+        $cekKegiatan = mysqli_query($myConnection, "select * from tb_kegiatan where id_kegiatan = '$id_kegiatan' and thn_kegiatan = '$thn' and soft_delete = 0");
+        if (mysqli_num_rows($cekKegiatan) > 0) {
+            $viewCekKegiatan = mysqli_fetch_array($cekKegiatan);
+            $delKegiatan = mysqli_query($myConnection, "update tb_kegiatan set soft_delete = 1 where id_kegiatan = '$id_kegiatan' and thn_kegiatan = '$thn' and soft_delete = 0");
+            if ($delKegiatan) {
+                $_SESSION['alert'] = "Toast.fire({icon: 'success',title: 'Data Kegiatan berhasil dihapus'})";
+                echo '<script> window.location="detailActivityList?_token=' . encrypt($thn) . '&_key=' . encrypt($viewCekKegiatan['id_area']) . '"; </script>';
             } else {
-                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Program gagal dihapus'})";
-                echo '<script> window.location="programList?_token=' . encrypt($viewCekProgram['thn_program']) . '"; </script>';
+                $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'Data Kegiatan gagal dihapus'})";
+                echo '<script> window.location="detailActivityList?_token=' . encrypt($thn) . '&_key=' . encrypt($viewCekKegiatan['id_area']) . '"; </script>';
             }
         } else {
             $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'SQL Injection Detected !'})";
-            echo '<script> window.location="programList"; </script>';
+            echo '<script> window.location="detailActivityList"; </script>';
         }
     } else {
         $_SESSION['alert'] = "Toast.fire({icon: 'error',title: 'SQL Injection Detected !'})";
