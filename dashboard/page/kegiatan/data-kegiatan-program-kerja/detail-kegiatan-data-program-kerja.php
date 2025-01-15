@@ -236,8 +236,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       <td class="text-center <?= $bgDok ?>"><?= $isiDok ?></td>
                       <td class="text-center">
                         <button type="button" class="btn btn-primary btn-xs" title="Upload File Kegiatan" data-toggle="modal" data-target="#uploadFileActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="upload"></i></button>
-                        <button type="button" class="btn btn-info btn-xs" title="Upload File Kegiatan" data-toggle="modal" data-target="#uploadFileActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-xs" title="Upload File Kegiatan" data-toggle="modal" data-target="#uploadFileActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="trash"></i></button>
+                        <button type="button" class="btn btn-info btn-xs" title="Ubah Data Kegiatan" data-toggle="modal" data-target="#editDetailActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs" title="Hapus Data Kegiatan" data-toggle="modal" data-target="#delDetailActivity" data-id="<?= encrypt($showKegiatan['id_kegiatan']) ?>" data-token="<?= encrypt($showKegiatan['thn_kegiatan']) ?>"><i data-feather="trash"></i></button>
                       </td>
                     </tr>
                 <?php

@@ -573,6 +573,31 @@ if (document.getElementById('data_detail_program')) {
   });
 
   $(document).ready(function () {
+    $('#editDetailActivity').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      document.getElementById("load-edit-detail-activity").style.display = "block";
+      document.getElementById("edit-detail-activity").style.display = "none";
+      const token = $(e.relatedTarget).data('token');
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/ubah-kegiatan.php',
+        data: { 'token': token, 'id': id },
+        success: function (data) {
+          document.getElementById("load-edit-detail-activity").style.display = "none";
+          document.getElementById("edit-detail-activity").style.display = "block";
+          $('.edit-detail-activity').html(data);
+          // $('#program').selectpicker();
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      // $('#program').selectpicker('destroy');
+    });
+  });
+
+  $(document).ready(function () {
     $('#uploadFileActivity').on('show.bs.modal', function (e) {
       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-lg');
       document.getElementById("load-upload-file-activity").style.display = "block";
