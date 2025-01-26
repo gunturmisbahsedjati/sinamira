@@ -38,6 +38,10 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
         $showFileKegiatan = mysqli_fetch_array($cekKegiatan);
         $tgl_awal = Indonesia2Tgl(substr($showFileKegiatan['tgl_awal'], 0, 10));
         $tgl_akhir = Indonesia2Tgl(substr($showFileKegiatan['tgl_akhir'], 0, 10));
+
+        require_once 'logika-upload-dokumen-detail-kegiatan.php';
+
+
 ?>
         <form action="setActivityList" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
             <div class="modal-header">
@@ -54,15 +58,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="surat_undangan" class="fw-bold form-label">File Surat Undangan </label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="surat_undangan" id="surat_undangan">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="surat_undangan" id="surat_undangan" <?= $disabledSU ?>>
                                     <label class="custom-file-label file-pdf" for="surat_undangan">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-surat-undangan" id="cek-surat-undangan" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-surat-undangan" id="cek-surat-undangan" type="checkbox" aria-label="Checkbox for following text input" <?= $checkSU ?>>
                                     </div>
                                 </div>
                             </div>
+                            <?= $fileSU ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -70,16 +75,18 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="sk_kegiatan" class="fw-bold form-label">File SK Kegiatan</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="sk_kegiatan" id="sk_kegiatan">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="sk_kegiatan" id="sk_kegiatan" <?= $disabledSK ?>>
                                     <label class="custom-file-label file-pdf" for="sk_kegiatan">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-sk" id="cek-sk" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-sk" id="cek-sk" type="checkbox" aria-label="Checkbox for following text input" <?= $checkSK ?>>
                                     </div>
                                 </div>
                             </div>
+                            <?= $fileSK ?>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -88,16 +95,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="panduan" class="fw-bold form-label">File Panduan</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" id="panduan">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="panduan_kegiatan" id="panduan" <?= $disabledPanduan ?>>
                                     <label class="custom-file-label file-pdf" for="panduan">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-panduan" id="cek-panduan" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-panduan" id="cek-panduan" type="checkbox" aria-label="Checkbox for following text input" <?= $checkPanduan ?>>
                                     </div>
                                 </div>
                             </div>
-
+                            <?= $filePanduan ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -105,15 +112,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="surat_tugas" class="fw-bold form-label">File Surat Tugas</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="surat_tugas" id="surat_tugas">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="surat_tugas" id="surat_tugas" <?= $disabledST ?>>
                                     <label class="custom-file-label file-pdf" for="surat_tugas">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-st" id="cek-st" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-st" id="cek-st" type="checkbox" aria-label="Checkbox for following text input" <?= $checkST ?>>
                                     </div>
                                 </div>
                             </div>
+                            <?= $fileST ?>
                         </div>
                     </div>
                 </div>
@@ -123,16 +131,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="dh" class="fw-bold form-label">File Daftar Hadir</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="dh" id="dh">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="dh" id="dh" <?= $disabledDH ?>>
                                     <label class="custom-file-label file-pdf" for="dh">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-dh" id="cek-dh" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-dh" id="cek-dh" type="checkbox" aria-label="Checkbox for following text input" <?= $checkDH ?>>
                                     </div>
                                 </div>
                             </div>
-
+                            <?= $fileDH ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -140,15 +148,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="notula" class="fw-bold form-label">File Notula</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="notula" id="notula">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="notula" id="notula" <?= $disabledNotula ?>>
                                     <label class="custom-file-label file-pdf" for="notula">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-notula" id="cek-notula" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-notula" id="cek-notula" type="checkbox" aria-label="Checkbox for following text input" <?= $checkNotula ?>>
                                     </div>
                                 </div>
                             </div>
+                            <?= $fileNotula ?>
                         </div>
                     </div>
                 </div>
@@ -158,15 +167,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="hasil_kegiatan" class="fw-bold form-label">File Hasil Kegiatan</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="hasil_kegiatan" id="hasil_kegiatan">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="hasil_kegiatan" id="hasil_kegiatan" <?= $disabledHK ?>>
                                     <label class="custom-file-label file-pdf" for="hasil_kegiatan">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-hk" id="cek-hk" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-hk" id="cek-hk" type="checkbox" aria-label="Checkbox for following text input" <?= $checkHK ?>>
                                     </div>
                                 </div>
                             </div>
+                            <?= $fileHK ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -174,15 +184,16 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="dokumentasi" class="fw-bold form-label">File Dokumentasi</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="dokumentasi" id="dokumentasi">
+                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="dokumentasi" id="dokumentasi" <?= $disabledDok ?>>
                                     <label class="custom-file-label file-pdf" for="dokumentasi">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-dok" id="cek-dok" type="checkbox" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input-file border border-info" type="checkbox" name="cek-dok" id="cek-dok" type="checkbox" aria-label="Checkbox for following text input" <?= $checkDok ?>>
                                     </div>
                                 </div>
                             </div>
+                            <?= $fileDok ?>
                         </div>
                     </div>
                 </div>
@@ -196,7 +207,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
             <div class="modal-footer">
                 <input type="hidden" name="_token" value="<?= $_POST['token'] ?>">
                 <input type="hidden" name="_key" value="<?= $_POST['id'] ?>">
-                <button type="submit" name="" class="btn btn-success" disabled id="upload-btn">Simpan</button>
+                <button type="submit" name="uploadDocActivities" class="btn btn-success" disabled id="upload-btn">Simpan</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>

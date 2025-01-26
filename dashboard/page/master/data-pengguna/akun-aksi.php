@@ -10,7 +10,7 @@ if (!isset($_SESSION['status_login'])) {
 }
 $arrayAkses = explode(",", $_SESSION['level']);
 
-if (in_array(1, $arrayAkses)) {
+if (in_array(1, $arrayAkses) || in_array(2, $arrayAkses)) {
     if (isset($_POST['addAccount'])) {
 
         $pegKey = mysqli_escape_string($myConnection, $_POST['pegawai']);

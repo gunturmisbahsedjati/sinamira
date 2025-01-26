@@ -744,104 +744,6 @@ $(document).ready(function () {
 
 //dashboard
 if (document.getElementById('calendar')) {
-  // var calendar = $('#calendar').fullCalendar({
-  //   themeSystem: 'bootstrap4',
-  //   header: {
-  //     left: 'prev,next today',
-  //     center: 'title',
-  //     right: 'year,month,basicWeek,listDay'
-  //   },
-  //   locale: 'id',
-  //   editable: false,
-  //   defaultView: 'month',
-  //   events: "dashboard/page/view-dashboard/fetch-event",
-  //   displayEventTime: false,
-  //   eventRender: function (event, element, view) {
-  //     if (event.allDay === 'true') {
-  //       event.allDay = true;
-  //     } else {
-  //       event.allDay = false;
-  //     }
-  //   },
-  //   selectable: true,
-  //   eventClick: function (event, element) {
-  //     $('#judulKegiatan').html(event.description);
-  //     $('#judulSubKegiatan').html(event.title);
-  //     $('#tglAwal').html(moment(event.start).format('D MMMM Y'));
-  //     $('#tglAkhir').html(moment(event.end).format('D MMMM Y'));
-  //     $('#seksi').html(event.nama_seksi);
-  //     if (event.petugas == '' || event.petugas == null || event.petugas == 0) {
-  //       $('#petugas').html('-');
-  //     } else {
-  //       $('#petugas').html(event.petugas);
-  //     }
-  //     $('#peserta').html(event.peserta);
-  //     $('#metode').html(event.metode);
-  //     if (event.tempat == '' || event.tempat == null) {
-  //       $('#tempat').html('-');
-  //     } else {
-  //       $('#tempat').html(event.tempat);
-  //     }
-
-  //     $('#id_sub').html(event.id_sub);
-  //     $('#_token').val(event.id_sub);
-  //     $('#deskripsiKegiatan').modal();
-  //     // var buttonEdit = document.getElementById("dateItem"); //Select your button element
-  //     // buttonEdit.setAttribute("value", "31/08/2023 - 02/09/2023"); //Set value attribute to your element
-  //     // document.getElementById("dateItem").setAttribute('value', moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY'));
-  //     // document.getElementById("dateItem").setAttribute('value', '31/08/2023 - 02/09/2023');
-  //     // document.getElementById("dateItem").value = moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY');
-  //     // $('#dateEvent').val(moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY'));
-  //     // document.getElementById("dateEvent").setRangeText(moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY'));
-  //     $('#dateEvent').daterangepicker({
-  //       startDate: moment(event.start).format('DD/MM/YYYY'), // after open picker you'll see this dates as picked
-  //       endDate: moment(event.end).format('DD/MM/YYYY'),
-  //       "autoApply": true,
-  //       "locale": {
-  //         "format": "DD/MM/YYYY",
-  //         "separator": " - ",
-  //         "applyLabel": "Apply",
-  //         "cancelLabel": "Cancel",
-  //         "fromLabel": "From",
-  //         "toLabel": "To",
-  //         "customRangeLabel": "Custom",
-  //         "weekLabel": "W",
-  //         "daysOfWeek": [
-  //           "Sun",
-  //           "Mon",
-  //           "Tue",
-  //           "Wed",
-  //           "Thu",
-  //           "Fri",
-  //           "Sat"
-  //         ],
-  //         "monthNames": [
-  //           "Januari",
-  //           "Februari",
-  //           "Maret",
-  //           "April",
-  //           "Mei",
-  //           "Juni",
-  //           "Juli",
-  //           "Agustus",
-  //           "September",
-  //           "Oktober",
-  //           "November",
-  //           "Desember"
-  //         ],
-  //         "firstDay": 1
-  //       },
-  //       "linkedCalendars": false,
-  //       "opens": "center",
-  //       "drops": "auto"
-  //     });
-  //     $cek_status = event.id_status_sub;
-  //     const $select = document.querySelector('#status_kegiatan');
-  //     $select.value = event.id_status_sub;
-
-  //   }
-
-  // });
   $('#calendar').fullCalendar({
     googleCalendarApiKey: 'AIzaSyBdk8wCbYgLgRfQKFJWGqFDSNKRlUtnT3w',
     themeSystem: 'bootstrap4',
@@ -869,94 +771,53 @@ if (document.getElementById('calendar')) {
       // event kegiatan
       {
         url: "dashboard/page/view-dashboard/fetch-event",
-
       }
       // any other sources...
     ],
-    // eventRender: function (event, element, view) {
-    //   if (event.allDay === 'true') {
-    //     event.allDay = true;
-    //   } else {
-    //     event.allDay = false;
-    //   }
-    // },
-    // selectable: true,
-    // eventClick: function (event, element) {
-    //   $('#judulKegiatan').html(event.description);
-    //   $('#judulSubKegiatan').html(event.title);
-    //   $('#tglAwal').html(moment(event.start).format('D MMMM Y'));
-    //   $('#tglAkhir').html(moment(event.end).format('D MMMM Y'));
-    //   $('#seksi').html(event.nama_seksi);
-    //   if (event.petugas == '' || event.petugas == null || event.petugas == 0) {
-    //     $('#petugas').html('-');
-    //   } else {
-    //     $('#petugas').html(event.petugas);
-    //   }
-    //   $('#peserta').html(event.peserta);
-    //   $('#metode').html(event.metode);
-    //   if (event.tempat == '' || event.tempat == null) {
-    //     $('#tempat').html('-');
-    //   } else {
-    //     $('#tempat').html(event.tempat);
-    //   }
-
-    //   $('#id_sub').html(event.id_sub);
-    //   $('#_token').val(event.id_sub);
-    //   $('#deskripsiKegiatan').modal();
-    //   // var buttonEdit = document.getElementById("dateItem"); //Select your button element
-    //   // buttonEdit.setAttribute("value", "31/08/2023 - 02/09/2023"); //Set value attribute to your element
-    //   // document.getElementById("dateItem").setAttribute('value', moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY'));
-    //   // document.getElementById("dateItem").setAttribute('value', '31/08/2023 - 02/09/2023');
-    //   // document.getElementById("dateItem").value = moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY');
-    //   // $('#dateEvent').val(moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY'));
-    //   // document.getElementById("dateEvent").setRangeText(moment(event.start).format('DD/MM/YYYY') + ' - ' + moment(event.end).format('DD/MM/YYYY'));
-    //   $('#dateEvent').datepicker({
-    //     startDate: moment(event.start).format('DD/MM/YYYY'), // after open picker you'll see this dates as picked
-    //     endDate: moment(event.end).format('DD/MM/YYYY'),
-    //     "autoApply": true,
-    //     "locale": {
-    //       "format": "DD/MM/YYYY",
-    //       "separator": " - ",
-    //       "applyLabel": "Apply",
-    //       "cancelLabel": "Cancel",
-    //       "fromLabel": "From",
-    //       "toLabel": "To",
-    //       "customRangeLabel": "Custom",
-    //       "weekLabel": "W",
-    //       "daysOfWeek": [
-    //         "Sun",
-    //         "Mon",
-    //         "Tue",
-    //         "Wed",
-    //         "Thu",
-    //         "Fri",
-    //         "Sat"
-    //       ],
-    //       "monthNames": [
-    //         "Januari",
-    //         "Februari",
-    //         "Maret",
-    //         "April",
-    //         "Mei",
-    //         "Juni",
-    //         "Juli",
-    //         "Agustus",
-    //         "September",
-    //         "Oktober",
-    //         "November",
-    //         "Desember"
-    //       ],
-    //       "firstDay": 1
-    //     },
-    //     "linkedCalendars": false,
-    //     "opens": "center",
-    //     "drops": "auto"
-    //   });
-    //   $cek_status = event.id_status_sub;
-    //   const $select = document.querySelector('#status_kegiatan');
-    //   $select.value = event.id_status_sub;
-
-    // }
+    eventRender: function (event, element, view) {
+      if (event.allDay === 'true') {
+        event.allDay = true;
+      } else {
+        event.allDay = false;
+      }
+    },
+    selectable: true,
+    eventClick: function (event, element) {
+      $('#nama_area').html(event.nama_area);
+      $('#nama_kegiatan').html(event.title);
+      $('#nama_program').html(event.nama_program);
+      $('#id_kegiatan').val(event.id_kegiatan);
+      let cek_status = event.status_kegiatan;
+      let $select = document.querySelector('#status_kegiatan');
+      $select.value = event.status_kegiatan;
+      const coba = 'oke';
+      // let awal = $('#tglAwal').html(moment(event.start).format('D MMMM Y'));
+      // let akhir = $('#tglAkhir').html(moment(event.end).format('D MMMM Y'));
+      moment.locale('id')
+      let awal = moment(event.start).format('D MMMM Y');
+      let akhir = moment(event.end).format('D MMMM Y');
+      $('#pelaksanaan').html(awal + ' s/d ' + akhir);
+      // console.log();
+      // $('#seksi').html(event.nama_seksi);
+      $('#detailCalendarActivity').modal();
+      // $('#detailCalendarActivity').on('show.bs.modal', function (e) {
+      //   $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      //   document.getElementById("load-detail-calender-activity").style.display = "block";
+      //   document.getElementById("detail-calender-activity").style.display = "none";
+      //   $.ajax({
+      //     type: 'post',
+      //     url: 'dashboard/page/view-dashboard/detail-kegiatan.php',
+      //     success: function (data) {
+      //       document.getElementById("load-detail-calender-activity").style.display = "none";
+      //       document.getElementById("detail-calender-activity").style.display = "block";
+      //       $('.detail-calender-activity').html(data);
+      //     }
+      //   });
+      // });
+      $('.modal').on('hide.bs.modal', function (e) {
+        $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+      });
+    }
   });
 };
 

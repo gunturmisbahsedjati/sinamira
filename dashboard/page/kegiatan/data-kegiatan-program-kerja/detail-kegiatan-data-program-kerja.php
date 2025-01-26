@@ -105,8 +105,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgSU = 'bg-secondary2';
                     } elseif ($showKegiatan['file_surat_undangan'] != NULL || $showKegiatan['file_surat_undangan'] != '' || $showKegiatan['file_surat_undangan'] != '0') {
                       $isiSU = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgSU = '';
                     } else {
                       $isiSU = '';
@@ -121,8 +121,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgSK = 'bg-secondary2';
                     } elseif ($showKegiatan['file_sk_kegiatan'] != NULL || $showKegiatan['file_sk_kegiatan'] != '' || $showKegiatan['file_sk_kegiatan'] != '0') {
                       $isiSK = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgSK = '';
                     } else {
                       $isiSK = '';
@@ -137,8 +137,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgPanduan = 'bg-secondary2';
                     } elseif ($showKegiatan['file_panduan'] != NULL || $showKegiatan['file_panduan'] != '' || $showKegiatan['file_panduan'] != '0') {
                       $isiPanduan = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgPanduan = '';
                     } else {
                       $isiPanduan = '';
@@ -153,8 +153,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgST = 'bg-secondary2';
                     } elseif ($showKegiatan['file_surat_tugas'] != NULL || $showKegiatan['file_surat_tugas'] != '' || $showKegiatan['file_surat_tugas'] != '0') {
                       $isiST = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgST = '';
                     } else {
                       $isiST = '';
@@ -169,8 +169,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgDH = 'bg-secondary2';
                     } elseif ($showKegiatan['file_daftar_hadir'] != NULL || $showKegiatan['file_daftar_hadir'] != '' || $showKegiatan['file_daftar_hadir'] != '0') {
                       $isiDH = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgDH = '';
                     } else {
                       $isiDH = '';
@@ -185,8 +185,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgNotula = 'bg-secondary2';
                     } elseif ($showKegiatan['file_notula'] != NULL || $showKegiatan['file_notula'] != '' || $showKegiatan['file_notula'] != '0') {
                       $isiNotula = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgNotula = '';
                     } else {
                       $isiNotula = '';
@@ -201,8 +201,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgHK = 'bg-secondary2';
                     } elseif ($showKegiatan['file_hasil_kegiatan'] != NULL || $showKegiatan['file_hasil_kegiatan'] != '' || $showKegiatan['file_hasil_kegiatan'] != '0') {
                       $isiHK = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgHK = '';
                     } else {
                       $isiHK = '';
@@ -217,8 +217,8 @@ if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 
                       $bgDok = 'bg-secondary2';
                     } elseif ($showKegiatan['file_dokumentasi'] != NULL || $showKegiatan['file_dokumentasi'] != '' || $showKegiatan['file_dokumentasi'] != '0') {
                       $isiDok = '
-                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="edit"></i></button>
-                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showProgram['id_program']) . '"><i data-feather="trash"></i></button>';
+                     <button type="button" class="btn btn-primary btn-xs" title="Edit Program" data-toggle="modal" data-target="#editProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="edit"></i></button>
+                     <button type="button" class="btn btn-danger btn-xs" title="Hapus Program" data-toggle="modal" data-target="#delProgram" data-id="' . encrypt($showKegiatan['id_program']) . '"><i data-feather="trash"></i></button>';
                       $bgDok = '';
                     } else {
                       $isiDok = '';
