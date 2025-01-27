@@ -4,7 +4,7 @@ if ($showFileKegiatan['file_surat_undangan'] != '' && $showFileKegiatan['file_su
     $fileSU = '<span class="text-success">Sudah unggah</span>';
     $checkSU = '';
     $disabledSU = '';
-} elseif ($showFileKegiatan['file_surat_undangan'] == 0) {
+} elseif ($showFileKegiatan['file_surat_undangan'] == '0') {
     $fileSU = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkSU = 'checked';
     $disabledSU = 'disabled';
@@ -18,7 +18,7 @@ if ($showFileKegiatan['file_sk_kegiatan'] != '' && $showFileKegiatan['file_sk_ke
     $fileSK = '<span class="text-success">Sudah unggah</span>';
     $checkSK = '';
     $disabledSK = '';
-} elseif ($showFileKegiatan['file_sk_kegiatan'] == 0) {
+} elseif ($showFileKegiatan['file_sk_kegiatan'] == '0') {
     $fileSK = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkSK = 'checked';
     $disabledSK = 'disabled';
@@ -32,7 +32,7 @@ if ($showFileKegiatan['file_panduan'] != '' && $showFileKegiatan['file_panduan']
     $filePanduan = '<span class="text-success">Sudah unggah</span>';
     $checkPanduan = '';
     $disabledPanduan = '';
-} elseif ($showFileKegiatan['file_panduan'] == 0) {
+} elseif ($showFileKegiatan['file_panduan'] == '0') {
     $filePanduan = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkPanduan = 'checked';
     $disabledPanduan = 'disabled';
@@ -46,7 +46,7 @@ if ($showFileKegiatan['file_surat_tugas'] != '' && $showFileKegiatan['file_surat
     $fileST = '<span class="text-success">Sudah unggah</span>';
     $checkST = '';
     $disabledST = '';
-} elseif ($showFileKegiatan['file_surat_tugas'] == 0) {
+} elseif ($showFileKegiatan['file_surat_tugas'] == '0') {
     $fileST = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkST = 'checked';
     $disabledST = 'disabled';
@@ -60,7 +60,7 @@ if ($showFileKegiatan['file_daftar_hadir'] != '' && $showFileKegiatan['file_daft
     $fileDH = '<span class="text-success">Sudah unggah</span>';
     $checkDH = '';
     $disabledDH = '';
-} elseif ($showFileKegiatan['file_daftar_hadir'] == 0) {
+} elseif ($showFileKegiatan['file_daftar_hadir'] == '0') {
     $fileDH = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkDH = 'checked';
     $disabledDH = 'disabled';
@@ -74,7 +74,7 @@ if ($showFileKegiatan['file_notula'] != '' && $showFileKegiatan['file_notula'] !
     $fileNotula = '<span class="text-success">Sudah unggah</span>';
     $checkNotula = '';
     $disabledNotula = '';
-} elseif ($showFileKegiatan['file_notula'] == 0) {
+} elseif ($showFileKegiatan['file_notula'] == '0') {
     $fileNotula = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkNotula = 'checked';
     $disabledNotula = 'disabled';
@@ -88,7 +88,7 @@ if ($showFileKegiatan['file_hasil_kegiatan'] != '' && $showFileKegiatan['file_ha
     $fileHK = '<span class="text-success">Sudah unggah</span>';
     $checkHK = '';
     $disabledHK = '';
-} elseif ($showFileKegiatan['file_hasil_kegiatan'] == 0) {
+} elseif ($showFileKegiatan['file_hasil_kegiatan'] == '0') {
     $fileHK = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkHK = 'checked';
     $disabledHK = 'disabled';
@@ -102,7 +102,7 @@ if ($showFileKegiatan['file_dokumentasi'] != '' && $showFileKegiatan['file_dokum
     $fileDok = '<span class="text-success">Sudah unggah</span>';
     $checkDok = '';
     $disabledDok = '';
-} elseif ($showFileKegiatan['file_dokumentasi'] == 0) {
+} elseif ($showFileKegiatan['file_dokumentasi'] == '0') {
     $fileDok = '<span class="text-secondary">Tidak perlu unggah</span>';
     $checkDok = 'checked';
     $disabledDok = 'disabled';
