@@ -1,6 +1,6 @@
 <?php
 
-if ($showFileKegiatan['file_surat_undangan'] != '' && $showFileKegiatan['file_sk_kegiatan'] != 0) {
+if ($showFileKegiatan['file_surat_undangan'] != '' && $showFileKegiatan['file_surat_undangan'] != 0 && $showFileKegiatan['file_surat_undangan'] != 1) {
     $fileSU = '<span class="text-success">Sudah unggah</span>';
     $checkSU = '';
     $disabledSU = '';
@@ -14,7 +14,7 @@ if ($showFileKegiatan['file_surat_undangan'] != '' && $showFileKegiatan['file_sk
     $disabledSU = '';
 }
 
-if ($showFileKegiatan['file_sk_kegiatan'] != '' && $showFileKegiatan['file_sk_kegiatan'] != 0) {
+if ($showFileKegiatan['file_sk_kegiatan'] != '' && $showFileKegiatan['file_sk_kegiatan'] != 0 && $showFileKegiatan['file_sk_kegiatan'] != 1) {
     $fileSK = '<span class="text-success">Sudah unggah</span>';
     $checkSK = '';
     $disabledSK = '';
@@ -28,7 +28,7 @@ if ($showFileKegiatan['file_sk_kegiatan'] != '' && $showFileKegiatan['file_sk_ke
     $disabledSK = '';
 }
 
-if ($showFileKegiatan['file_panduan'] != '' && $showFileKegiatan['file_panduan'] != 0) {
+if ($showFileKegiatan['file_panduan'] != '' && $showFileKegiatan['file_panduan'] != 0 && $showFileKegiatan['file_panduan'] != 1) {
     $filePanduan = '<span class="text-success">Sudah unggah</span>';
     $checkPanduan = '';
     $disabledPanduan = '';
@@ -42,7 +42,7 @@ if ($showFileKegiatan['file_panduan'] != '' && $showFileKegiatan['file_panduan']
     $disabledPanduan = '';
 }
 
-if ($showFileKegiatan['file_surat_tugas'] != '' && $showFileKegiatan['file_surat_tugas'] != 0) {
+if ($showFileKegiatan['file_surat_tugas'] != '' && $showFileKegiatan['file_surat_tugas'] != 0 && $showFileKegiatan['file_surat_tugas'] != 1) {
     $fileST = '<span class="text-success">Sudah unggah</span>';
     $checkST = '';
     $disabledST = '';
@@ -56,7 +56,7 @@ if ($showFileKegiatan['file_surat_tugas'] != '' && $showFileKegiatan['file_surat
     $disabledST = '';
 }
 
-if ($showFileKegiatan['file_daftar_hadir'] != '' && $showFileKegiatan['file_daftar_hadir'] != 0) {
+if ($showFileKegiatan['file_daftar_hadir'] != '' && $showFileKegiatan['file_daftar_hadir'] != 0 && $showFileKegiatan['file_daftar_hadir'] != 1) {
     $fileDH = '<span class="text-success">Sudah unggah</span>';
     $checkDH = '';
     $disabledDH = '';
@@ -70,7 +70,7 @@ if ($showFileKegiatan['file_daftar_hadir'] != '' && $showFileKegiatan['file_daft
     $disabledDH = '';
 }
 
-if ($showFileKegiatan['file_notula'] != '' && $showFileKegiatan['file_notula'] != 0) {
+if ($showFileKegiatan['file_notula'] != '' && $showFileKegiatan['file_notula'] != 0 && $showFileKegiatan['file_notula'] != 1) {
     $fileNotula = '<span class="text-success">Sudah unggah</span>';
     $checkNotula = '';
     $disabledNotula = '';
@@ -84,7 +84,7 @@ if ($showFileKegiatan['file_notula'] != '' && $showFileKegiatan['file_notula'] !
     $disabledNotula = '';
 }
 
-if ($showFileKegiatan['file_hasil_kegiatan'] != '' && $showFileKegiatan['file_hasil_kegiatan'] != 0) {
+if ($showFileKegiatan['file_hasil_kegiatan'] != '' && $showFileKegiatan['file_hasil_kegiatan'] != 0 && $showFileKegiatan['file_hasil_kegiatan'] != 1) {
     $fileHK = '<span class="text-success">Sudah unggah</span>';
     $checkHK = '';
     $disabledHK = '';
@@ -98,7 +98,7 @@ if ($showFileKegiatan['file_hasil_kegiatan'] != '' && $showFileKegiatan['file_ha
     $disabledHK = '';
 }
 
-if ($showFileKegiatan['file_dokumentasi'] != '' && $showFileKegiatan['file_dokumentasi'] != 0) {
+if ($showFileKegiatan['file_dokumentasi'] != '' && $showFileKegiatan['file_dokumentasi'] != 0 && $showFileKegiatan['file_dokumentasi'] != 1) {
     $fileDok = '<span class="text-success">Sudah unggah</span>';
     $checkDok = '';
     $disabledDok = '';

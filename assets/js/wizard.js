@@ -173,7 +173,7 @@ function ValidateImage(oInput) {
       }
 
       if (!blnValid) {
-        console.log('error eks');
+        // console.log('error eks');
         Swal.fire({
           icon: 'error',
           title: 'File format harus .jpg, .jpeg, .png !',
@@ -188,11 +188,58 @@ function ValidateImage(oInput) {
   return true;
 };
 
+var _validFileExtensionVideo = ["mp4", "wma", "avi"];
+function ValidateVideo(oInput) {
+  if (oInput.type == "file") {
+    var sFileName = oInput.value;
+    if (sFileName.length > 0) {
+      var blnValid = false;
+      for (var j = 0; j < _validFileExtensionVideo.length; j++) {
+        var sCurExtension = _validFileExtensionVideo[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+          blnValid = true;
+          break;
+
+        }
+      }
+
+      if (!blnValid) {
+        // console.log('error eks');
+        Swal.fire({
+          icon: 'error',
+          title: 'File format harus .mp4, .wma, .avi !',
+          showConfirmButton: true,
+          timer: 5000
+        });
+        oInput.value = "";
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+function ValidateSizeVideo(file) {
+  var FileSize = file.files[0].size;
+  if (FileSize > 200000000) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Ukuran file maks 200MB',
+      showConfirmButton: true,
+      timer: 5000
+    });
+    file.value = "";
+    return false;
+  } else {
+
+  }
+}
+
 
 function ValidateSize(file) {
   var FileSize = file.files[0].size;
   if (FileSize > 1000000) {
-    console.log('error eks');
+    // console.log('error eks');
     Swal.fire({
       icon: 'error',
       title: 'Ukuran file maks 1MB',

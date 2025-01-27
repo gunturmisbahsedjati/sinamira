@@ -1,0 +1,7 @@
+*.pdf
+*.sql
+*.txt
+.vscode/*
+*.mp4
+*.xlsx
+*.xls

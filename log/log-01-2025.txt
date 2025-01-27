@@ -46,3 +46,6 @@
 [ 127.0.0.1 ] 23 01 2025 18: 03 - ANIMASIKU Studio berhasil login
 [ 127.0.0.1 ] 25 01 2025 18: 36 - ANIMASIKU Studio berhasil login
 [ 127.0.0.1 ] 26 01 2025 22: 01 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 27 01 2025 22: 30 - ANIMASIKU Studio berhasil login
+[ 127.0.0.1 ] 28 01 2025 01: 44 - ANIMASIKU Studio berhasil keluar dari sistem
+[ 127.0.0.1 ] 28 01 2025 01: 44 - Estu Sofiatiningrum, S.Si berhasil login

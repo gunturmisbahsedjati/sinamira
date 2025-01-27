@@ -184,7 +184,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                             <label for="dokumentasi" class="fw-bold form-label">File Dokumentasi</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="dokumentasi" id="dokumentasi" <?= $disabledDok ?>>
+                                    <input type="file" accept=".mp4,.wma,.avi" onchange="ValidateVideo(this);ValidateSizeVideo(this);" class="custom-file-input upload-pdf" name="dokumentasi" id="dokumentasi" <?= $disabledDok ?>>
                                     <label class="custom-file-label file-pdf" for="dokumentasi">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
