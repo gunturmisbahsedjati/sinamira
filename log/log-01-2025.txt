@@ -49,3 +49,9 @@
 [ 127.0.0.1 ] 27 01 2025 22: 30 - ANIMASIKU Studio berhasil login
 [ 127.0.0.1 ] 28 01 2025 01: 44 - ANIMASIKU Studio berhasil keluar dari sistem
 [ 127.0.0.1 ] 28 01 2025 01: 44 - Estu Sofiatiningrum, S.Si berhasil login
+[ 127.0.0.1 ] 28 01 2025 22: 56 - Estu Sofiatiningrum, S.Si berhasil keluar dari sistem
+[ 127.0.0.1 ] 28 01 2025 22: 56 - Yetty Widya Kusuma Santi, S.Sos., M.Si. berhasil login
+[ 127.0.0.1 ] 28 01 2025 23: 53 - Estu Sofiatiningrum, S.Si berhasil login
+[ 127.0.0.1 ] 29 01 2025 00: 17 - Yetty Widya Kusuma Santi, S.Sos., M.Si. berhasil keluar dari sistem
+[ 127.0.0.1 ] 29 01 2025 00: 17 - Imam Mashudi, S.Sos. berhasil login
+[ 127.0.0.1 ] 29 01 2025 00: 39 - Estu Sofiatiningrum, S.Si berhasil keluar dari sistem

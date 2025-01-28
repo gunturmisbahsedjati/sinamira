@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../../../inc/inc.library.php';
 ?>
 <div class="modal-header">
@@ -24,13 +25,20 @@ require_once '../../../../inc/inc.library.php';
         </div>
     </div>
     <div class="modal-footer">
+        <input type="hidden" id="_key" value="<?= encrypt($_SESSION['akses_tim']) ?>">
+        <input type="hidden" id="_id" value="<?= encrypt($_SESSION['level']) ?>">
         <button type="submit" class="btn btn-success">Lanjut</button>
-        <!-- <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button> -->
     </div>
 </form>
 <script type="text/javascript">
     $('#cekThnKegiatan').submit(function(e) {
         let byYearActivity = document.getElementById("byYearActivity").value;
-        window.location = "activityList?_token=" + byYearActivity;
+        let byKey = document.getElementById("_key").value;
+        let byID = document.getElementById("_id").value;
+        if (byID == 'TWpNNU9UTTVOMk14') {
+            window.location = "detailActivityList?_token=" + byYearActivity + "&_key=" + byKey;
+        } else {
+            window.location = "activityList?_token=" + byYearActivity;
+        }
     });
 </script>

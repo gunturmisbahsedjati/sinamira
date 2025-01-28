@@ -309,6 +309,26 @@ function ValidateSingleInputExcel(oInput) {
 // });
 
 
+//sidebar
+$(document).ready(function () {
+  $('#commingSoon').on('show.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+    document.getElementById("load-comingsoon").style.display = "block";
+    document.getElementById("comingsoon").style.display = "none";
+    $.ajax({
+      url: 'dashboard/page/comingSoonPage',
+      success: function (data) {
+        document.getElementById("load-comingsoon").style.display = "none";
+        document.getElementById("comingsoon").style.display = "block";
+        $('.comingsoon').html(data);
+      }
+    });
+  });
+  $('.modal').on('hide.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  });
+});
+
 //js data-pengguna
 if (document.getElementById('data_akun_manajemen')) {
 

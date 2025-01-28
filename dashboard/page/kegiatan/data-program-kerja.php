@@ -137,11 +137,6 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
     <!-- [ sample-page ] start -->
     <div class="col-sm-12">
       <div class="card">
-        <div class="card-header">
-          <div class="float-right">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProgram" data-token="<?= $_GET['_token'] ?>"><i data-feather="plus-circle"></i> Tambah</button>
-          </div>
-        </div>
         <div class="card-body">
           <div class="table-responsive">
             <table id="program_table" class="table table-bordered table-hover" width="100%">
@@ -151,7 +146,6 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                   <th class="text-center align-middle">Area</th>
                   <th class="text-center align-middle">Program</th>
                   <th class="text-center align-middle">Jenis</th>
-                  <th class="text-center align-middle">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -161,7 +155,7 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                                           from tb_program
                                           left join tb_area on tb_area.id_area = tb_program.id_area
                                           left join tb_jenis_program on tb_jenis_program.id_jenis_program = tb_program.id_jenis_program
-                                          where tb_program.soft_delete = 0 and tb_program.id_area = '$id_area'");
+                                          where tb_program.soft_delete = 0");
                 while ($showProgram = mysqli_fetch_array($sqlProgram)) {
                 ?>
                   <tr>
@@ -171,8 +165,6 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                     </td>
                     <td style="word-wrap:break-word;white-space:normal"><?= $showProgram['nama_program'] ?></td>
                     <td><?= $showProgram['jenis_program'] ?></td>
-                    <td class="text-center text-nowarp">
-                    </td>
                   </tr>
                 <?php } ?>
               </tbody>

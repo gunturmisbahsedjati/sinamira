@@ -41,6 +41,15 @@
                     <li class="pc-item">
                         <a href="#" data-toggle="modal" data-target="#showYearActivity" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
                     </li>
+                    <li class="pc-item pc-caption">
+                        <label>Report Laporan</label>
+                    </li>
+                    <li class="pc-item">
+                        <a href="#" data-toggle="modal" data-target="#commingSoon" class="pc-link "><span class="pc-micon"><i data-feather="file"></i></span><span class="pc-mtext">Laporan Program Kerja</span></a>
+                    </li>
+                    <li class="pc-item">
+                        <a href="#" data-toggle="modal" data-target="#commingSoon" class="pc-link "><span class="pc-micon"><i data-feather="file"></i></span><span class="pc-mtext">Laporan Kegiatan</span></a>
+                    </li>
                 <?php
                     //anggota panel
                 } elseif ($level == 3) { ?>
@@ -53,6 +62,15 @@
                     <li class="pc-item">
                         <a href="#" data-toggle="modal" data-target="#showYearActivity" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
                     </li>
+                    <li class="pc-item pc-caption">
+                        <label>Report Laporan</label>
+                    </li>
+                    <li class="pc-item">
+                        <a href="#" data-toggle="modal" data-target="#commingSoon" class="pc-link "><span class="pc-micon"><i data-feather="file"></i></span><span class="pc-mtext">Laporan Program Kerja</span></a>
+                    </li>
+                    <li class="pc-item">
+                        <a href="#" data-toggle="modal" data-target="#commingSoon" class="pc-link "><span class="pc-micon"><i data-feather="file"></i></span><span class="pc-mtext">Laporan Kegiatan</span></a>
+                    </li>
                 <?php } ?>
 
             </ul>
@@ -61,7 +79,19 @@
     </div>
 
 </nav>
-
+<div class="modal fade" id="commingSoon" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id="load-comingsoon" style="display: none;">
+                <div class="modal-body">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    loading......
+                </div>
+            </div>
+            <div class="comingsoon" id="comingsoon"></div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="showYearProgram" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

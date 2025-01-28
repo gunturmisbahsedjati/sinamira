@@ -55,7 +55,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="surat_undangan" class="fw-bold form-label">File Surat Undangan </label>
+                            <label for="surat_undangan" class="fw-bold form-label">File Surat Undangan <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="surat_undangan" id="surat_undangan" <?= $disabledSU ?>>
@@ -72,7 +72,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="sk_kegiatan" class="fw-bold form-label">File SK Kegiatan</label>
+                            <label for="sk_kegiatan" class="fw-bold form-label">File SK Kegiatan <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="sk_kegiatan" id="sk_kegiatan" <?= $disabledSK ?>>
@@ -92,7 +92,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="panduan" class="fw-bold form-label">File Panduan</label>
+                            <label for="panduan" class="fw-bold form-label">File Panduan <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="panduan_kegiatan" id="panduan" <?= $disabledPanduan ?>>
@@ -109,7 +109,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="surat_tugas" class="fw-bold form-label">File Surat Tugas</label>
+                            <label for="surat_tugas" class="fw-bold form-label">File Surat Tugas <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="surat_tugas" id="surat_tugas" <?= $disabledST ?>>
@@ -128,7 +128,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="dh" class="fw-bold form-label">File Daftar Hadir</label>
+                            <label for="dh" class="fw-bold form-label">File Daftar Hadir <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="dh" id="dh" <?= $disabledDH ?>>
@@ -145,7 +145,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="notula" class="fw-bold form-label">File Notula</label>
+                            <label for="notula" class="fw-bold form-label">File Notula <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="notula" id="notula" <?= $disabledNotula ?>>
@@ -164,7 +164,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="hasil_kegiatan" class="fw-bold form-label">File Hasil Kegiatan</label>
+                            <label for="hasil_kegiatan" class="fw-bold form-label">File Hasil Kegiatan <i class="text-danger">(format *.pdf)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".pdf" onchange="ValidateSingleInputpdf(this);ValidateSize2MB(this);" class="custom-file-input upload-pdf" name="hasil_kegiatan" id="hasil_kegiatan" <?= $disabledHK ?>>
@@ -181,7 +181,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="dokumentasi" class="fw-bold form-label">File Dokumentasi</label>
+                            <label for="dokumentasi" class="fw-bold form-label">File Dokumentasi <i class="text-danger">(format *.mp4)</i></label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" accept=".mp4,.wma,.avi" onchange="ValidateVideo(this);ValidateSizeVideo(this);" class="custom-file-input upload-pdf" name="dokumentasi" id="dokumentasi" <?= $disabledDok ?>>

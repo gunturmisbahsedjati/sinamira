@@ -67,7 +67,16 @@ include './inc/inc.library.php'
                         <img src="assets/images/user/undraw_female-avatar_7t6k.svg" alt="user-image" class="user-avtar border border-secondary">
                         <span>
                             <span class="user-name"><?= $nama_akun ?></span>
-                            <span class="user-desc">Administrator</span>
+                            <span class="user-desc">
+                                <?php
+                                if ($level == 1 || $level == 2) {
+                                    echo 'Administrator';
+                                } elseif ($level == 3) {
+                                    $viewArea = mysqli_fetch_array(mysqli_query($myConnection, "select * from tb_area where id_area = '$akses_area'"));
+                                    echo 'Akun Tim ' . $viewArea['nama_area'];
+                                }
+                                ?>
+                            </span>
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pc-h-dropdown">

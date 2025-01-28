@@ -8,6 +8,7 @@ if (!isset($_SESSION['username'])) {
     $nama_akun = $_SESSION['nama_akun'];
     $id = $_SESSION['id'];
     $level = $_SESSION['level'];
+    $akses_area = $_SESSION['akses_tim'];
     $arrayAkses = explode(",", $_SESSION['level']);
     if (time() - $_SESSION["login_time_stamp"] > 86400) {
         session_unset();
