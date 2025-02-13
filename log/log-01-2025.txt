@@ -56,3 +56,4 @@
 [ 127.0.0.1 ] 29 01 2025 00: 17 - Imam Mashudi, S.Sos. berhasil login
 [ 127.0.0.1 ] 29 01 2025 00: 39 - Estu Sofiatiningrum, S.Si berhasil keluar dari sistem
 [ 127.0.0.1 ] 30 01 2025 14: 12 - Estu Sofiatiningrum, S.Si berhasil login
+[ 127.0.0.1 ] 31 01 2025 18: 40 - ANIMASIKU Studio berhasil login

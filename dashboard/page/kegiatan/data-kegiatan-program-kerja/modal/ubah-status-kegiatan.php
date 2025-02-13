@@ -94,7 +94,7 @@ if (!isset($_POST['token']) && !isset($_POST['id'])) {
             <div class="modal-footer">
                 <input type="hidden" name="_id" value="<?= encrypt($showFileKegiatan['id_kegiatan']) ?>">
                 <input type="hidden" name="_key" value="<?= $_POST['token'] ?>">
-                <button type="submit" name="updateStatusActivity" class="btn btn-danger" id="statusKeg" disabled>Hapus</button>
+                <button type="submit" name="updateStatusActivity" class="btn btn-info" id="statusKeg" disabled>Update</button>
             </div>
         </form>
         <script type="text/javascript">
