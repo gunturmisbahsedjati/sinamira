@@ -784,6 +784,220 @@ if (document.getElementById('data_detail_program')) {
 };
 //js data-kegiatan
 
+//js data-capaian-kinerja
+$(document).ready(function () {
+  $('#showYearInstrument').on('show.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+    document.getElementById("load-show-year-instrument").style.display = "block";
+    document.getElementById("show-year-instrument").style.display = "none";
+    $.ajax({
+      type: 'post',
+      url: 'dashboard/page/kegiatan/data-capaian-program-kerja/pilih-tahun-capaian.php',
+      success: function (data) {
+        // console.log(data);
+        document.getElementById("load-show-year-instrument").style.display = "none";
+        document.getElementById("show-year-instrument").style.display = "block";
+        $('.show-year-instrument').html(data);
+      }
+    });
+  });
+  $('.modal').on('hide.bs.modal', function (e) {
+    $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  });
+});
+
+if (document.getElementById('data_capaian_kegiatan')) {
+  $('#activity_table').DataTable({
+    'paging': true,
+    'lengthChange': true,
+    'searching': true,
+    'ordering': true,
+    'info': true,
+    // 'autoWidth': true
+  });
+}
+if (document.getElementById('data_capaian_kinerja_detail_program')) {
+
+  // $('#detail_program_table').DataTable({
+  //   'paging': false,
+  //   'lengthChange': false,
+  //   'searching': false,
+  //   'ordering': false,
+  //   'info': false,
+  //   'autoWidth': true
+  // });
+
+
+  // $(document).ready(function () {
+  //   $('#addDetailActivity').on('show.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //     document.getElementById("load-add-detail-activity").style.display = "block";
+  //     document.getElementById("add-detail-activity").style.display = "none";
+  //     const token = $(e.relatedTarget).data('token');
+  //     const key = $(e.relatedTarget).data('key');
+  //     $.ajax({
+  //       type: 'post',
+  //       url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/tambah-kegiatan.php',
+  //       data: { 'token': token, 'key': key },
+  //       success: function (data) {
+  //         document.getElementById("load-add-detail-activity").style.display = "none";
+  //         document.getElementById("add-detail-activity").style.display = "block";
+  //         $('.add-detail-activity').html(data);
+  //         // $('#program').selectpicker();
+  //       }
+  //     });
+  //   });
+  //   $('.modal').on('hide.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     // $('#program').selectpicker('destroy');
+  //   });
+  // });
+
+  // $(document).ready(function () {
+  //   $('#editDetailActivity').on('show.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //     document.getElementById("load-edit-detail-activity").style.display = "block";
+  //     document.getElementById("edit-detail-activity").style.display = "none";
+  //     const token = $(e.relatedTarget).data('token');
+  //     const id = $(e.relatedTarget).data('id');
+  //     $.ajax({
+  //       type: 'post',
+  //       url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/ubah-kegiatan.php',
+  //       data: { 'token': token, 'id': id },
+  //       success: function (data) {
+  //         document.getElementById("load-edit-detail-activity").style.display = "none";
+  //         document.getElementById("edit-detail-activity").style.display = "block";
+  //         $('.edit-detail-activity').html(data);
+  //         // $('#program').selectpicker();
+  //       }
+  //     });
+  //   });
+  //   $('.modal').on('hide.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     // $('#program').selectpicker('destroy');
+  //   });
+  // });
+
+  // $(document).ready(function () {
+  //   $('#delDetailActivity').on('show.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //     document.getElementById("load-del-detail-activity").style.display = "block";
+  //     document.getElementById("del-detail-activity").style.display = "none";
+  //     const token = $(e.relatedTarget).data('token');
+  //     const id = $(e.relatedTarget).data('id');
+  //     $.ajax({
+  //       type: 'post',
+  //       url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/hapus-kegiatan.php',
+  //       data: { 'token': token, 'id': id },
+  //       success: function (data) {
+  //         document.getElementById("load-del-detail-activity").style.display = "none";
+  //         document.getElementById("del-detail-activity").style.display = "block";
+  //         $('.del-detail-activity').html(data);
+  //         // $('#program').selectpicker();
+  //       }
+  //     });
+  //   });
+  //   $('.modal').on('hide.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     // $('#program').selectpicker('destroy');
+  //   });
+  // });
+
+  // $(document).ready(function () {
+  //   $('#updateStatusActivity').on('show.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //     document.getElementById("load-update-status-activity").style.display = "block";
+  //     document.getElementById("update-status-activity").style.display = "none";
+  //     const token = $(e.relatedTarget).data('token');
+  //     const id = $(e.relatedTarget).data('id');
+  //     $.ajax({
+  //       type: 'post',
+  //       url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/ubah-status-kegiatan.php',
+  //       data: { 'token': token, 'id': id },
+  //       success: function (data) {
+  //         document.getElementById("load-update-status-activity").style.display = "none";
+  //         document.getElementById("update-status-activity").style.display = "block";
+  //         $('.update-status-activity').html(data);
+  //         // $('#program').selectpicker();
+  //       }
+  //     });
+  //   });
+  //   $('.modal').on('hide.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     // $('#program').selectpicker('destroy');
+  //   });
+  // });
+
+  // $(document).ready(function () {
+  //   $('#uploadFileActivity').on('show.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-lg');
+  //     document.getElementById("load-upload-file-activity").style.display = "block";
+  //     document.getElementById("upload-file-activity").style.display = "none";
+  //     const token = $(e.relatedTarget).data('token');
+  //     const id = $(e.relatedTarget).data('id');
+  //     $.ajax({
+  //       type: 'post',
+  //       url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/upload-dokumen-detail-kegiatan.php',
+  //       data: { 'token': token, 'id': id },
+  //       success: function (data) {
+  //         document.getElementById("load-upload-file-activity").style.display = "none";
+  //         document.getElementById("upload-file-activity").style.display = "block";
+  //         $('.upload-file-activity').html(data);
+  //       }
+  //     });
+  //   });
+  //   $('.modal').on('hide.bs.modal', function (e) {
+  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //   });
+  // });
+
+  //   $(document).ready(function () {
+  //     $('#editProgram').on('show.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //       document.getElementById("load-edit-program").style.display = "block";
+  //       document.getElementById("edit-program").style.display = "none";
+  //       const id = $(e.relatedTarget).data('id');
+  //       $.ajax({
+  //         type: 'post',
+  //         url: 'dashboard/page/kegiatan/data-program-kerja/ubah-program.php',
+  //         data: { 'id': id },
+  //         success: function (data) {
+  //           document.getElementById("load-edit-program").style.display = "none";
+  //           document.getElementById("edit-program").style.display = "block";
+  //           $('.edit-program').html(data);
+  //         }
+  //       });
+  //     });
+  //     $('.modal').on('hide.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     });
+  //   });
+
+  //   $(document).ready(function () {
+  //     $('#delProgram').on('show.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
+  //       document.getElementById("load-del-program").style.display = "block";
+  //       document.getElementById("del-program").style.display = "none";
+  //       const id = $(e.relatedTarget).data('id');
+  //       $.ajax({
+  //         type: 'post',
+  //         url: 'dashboard/page/kegiatan/data-program-kerja/hapus-program.php',
+  //         data: { 'id': id },
+  //         success: function (data) {
+  //           document.getElementById("load-del-program").style.display = "none";
+  //           document.getElementById("del-program").style.display = "block";
+  //           $('.del-program').html(data);
+  //         }
+  //       });
+  //     });
+  //     $('.modal').on('hide.bs.modal', function (e) {
+  //       $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+  //     });
+  //   });
+
+};
+//js data-capaian-kinerja
+
 
 // common fitur
 $(document).ready(function () {
