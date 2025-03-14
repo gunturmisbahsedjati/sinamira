@@ -34,7 +34,7 @@ if (isset($_SESSION['alert'])) : ?>
 <?php
 if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
 ?>
-  <h4 class="text-secondary" id="data_kegiatan">Data Kegiatan Program Kerja Tahun <?= decrypt($_GET['_token']) ?></h4>
+  <h4 class="text-secondary" id="data_kegiatan">Data Capaian Kinerja Program Kerja Tahun <?= decrypt($_GET['_token']) ?></h4>
   <div class="row">
     <!-- [ sample-page ] start -->
     <div class="col-sm-12">
@@ -116,7 +116,7 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                       </div>
                     </td>
                     <td class="text-center text-nowarp">
-                      <a href="detailActivityList?_token=<?= $_GET['_token'] ?>&_key=<?= encrypt($viewArea['id_area']) ?>" class="btn btn-primary btn-xs" title="cek program area"><i data-feather="search"></i></a>
+                      <a href="detailInstrumentList?_token=<?= $_GET['_token'] ?>&_key=<?= encrypt($viewArea['id_area']) ?>" class="btn btn-primary btn-xs" title="cek program area"><i data-feather="search"></i></a>
                     </td>
                   </tr>
                 <?php } ?>

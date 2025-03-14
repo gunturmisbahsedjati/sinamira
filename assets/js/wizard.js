@@ -807,16 +807,17 @@ $(document).ready(function () {
 });
 
 if (document.getElementById('data_capaian_kegiatan')) {
-  $('#activity_table').DataTable({
-    'paging': true,
-    'lengthChange': true,
-    'searching': true,
-    'ordering': true,
-    'info': true,
-    // 'autoWidth': true
-  });
+
 }
 if (document.getElementById('data_capaian_kinerja_detail_program')) {
+  $('#instrument_table').DataTable({
+    'paging': false,
+    'lengthChange': false,
+    'searching': true,
+    'ordering': false,
+    'info': false,
+    // 'autoWidth': true
+  });
 
   // $('#detail_program_table').DataTable({
   //   'paging': false,
@@ -828,30 +829,53 @@ if (document.getElementById('data_capaian_kinerja_detail_program')) {
   // });
 
 
-  // $(document).ready(function () {
-  //   $('#addDetailActivity').on('show.bs.modal', function (e) {
-  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-md');
-  //     document.getElementById("load-add-detail-activity").style.display = "block";
-  //     document.getElementById("add-detail-activity").style.display = "none";
-  //     const token = $(e.relatedTarget).data('token');
-  //     const key = $(e.relatedTarget).data('key');
-  //     $.ajax({
-  //       type: 'post',
-  //       url: 'dashboard/page/kegiatan/data-kegiatan-program-kerja/modal/tambah-kegiatan.php',
-  //       data: { 'token': token, 'key': key },
-  //       success: function (data) {
-  //         document.getElementById("load-add-detail-activity").style.display = "none";
-  //         document.getElementById("add-detail-activity").style.display = "block";
-  //         $('.add-detail-activity').html(data);
-  //         // $('#program').selectpicker();
-  //       }
-  //     });
-  //   });
-  //   $('.modal').on('hide.bs.modal', function (e) {
-  //     $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
-  //     // $('#program').selectpicker('destroy');
-  //   });
-  // });
+  $(document).ready(function () {
+    $('#addInstrumentTeam').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-lg');
+      document.getElementById("load-add-instrument-team").style.display = "block";
+      document.getElementById("add-instrument-team").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-capaian-program-kerja/modal/tambah-capaian-akses-tim.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-add-instrument-team").style.display = "none";
+          document.getElementById("add-instrument-team").style.display = "block";
+          $('.add-instrument-team').html(data);
+          // $('#program').selectpicker();
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      // $('#program').selectpicker('destroy');
+    });
+  });
+
+  $(document).ready(function () {
+    $('#addInstrumentAdmin').on('show.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-lg');
+      document.getElementById("load-add-instrument-admin").style.display = "block";
+      document.getElementById("add-instrument-admin").style.display = "none";
+      const id = $(e.relatedTarget).data('id');
+      $.ajax({
+        type: 'post',
+        url: 'dashboard/page/kegiatan/data-capaian-program-kerja/modal/tambah-capaian-akses-admin.php',
+        data: { 'id': id },
+        success: function (data) {
+          document.getElementById("load-add-instrument-admin").style.display = "none";
+          document.getElementById("add-instrument-admin").style.display = "block";
+          $('.add-instrument-admin').html(data);
+          // $('#program').selectpicker();
+        }
+      });
+    });
+    $('.modal').on('hide.bs.modal', function (e) {
+      $('.modal .modal-dialog').attr('class', 'modal-dialog modal-sm');
+      // $('#program').selectpicker('destroy');
+    });
+  });
 
   // $(document).ready(function () {
   //   $('#editDetailActivity').on('show.bs.modal', function (e) {

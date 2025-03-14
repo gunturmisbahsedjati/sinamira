@@ -9,7 +9,7 @@ require_once '../../../../inc/inc.library.php';
 <form id="cekThnKegiatan" role="form" action="javascript:void(0)">
     <div class="modal-body">
         <div class="form-group">
-            <select class="form-control fw-bold" id="byYearActivity" aria-label="Default select example">
+            <select class="form-control fw-bold" id="byYearInstrument" aria-label="Default select example">
                 <option selected="" disabled>Pilih Tahun Kegiatan</option>
                 <?php
                 $sekarang = date('Y');
@@ -32,13 +32,13 @@ require_once '../../../../inc/inc.library.php';
 </form>
 <script type="text/javascript">
     $('#cekThnKegiatan').submit(function(e) {
-        let byYearActivity = document.getElementById("byYearActivity").value;
+        let byYearInstrument = document.getElementById("byYearInstrument").value;
         let byKey = document.getElementById("_key").value;
         let byID = document.getElementById("_id").value;
         if (byID == 'TWpNNU9UTTVOMk14') {
-            window.location = "detailActivityList?_token=" + byYearActivity + "&_key=" + byKey;
+            window.location = "detailInstrumentList?_token=" + byYearInstrument + "&_key=" + byKey;
         } else {
-            window.location = "activityList?_token=" + byYearActivity;
+            window.location = "instrumentList?_token=" + byYearInstrument;
         }
     });
 </script>

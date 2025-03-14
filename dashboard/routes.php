@@ -9,7 +9,7 @@ switch ($opsi) {
         require_once(PUB_DIR . 'page/home.php');
         break;
 
-        //modul
+    //modul
     case 'account':
         require_once(PUB_DIR . 'page/master/data-pengguna.php');
         break;
@@ -39,12 +39,21 @@ switch ($opsi) {
     case 'setActivityList':
         require_once(PUB_DIR . 'page/kegiatan/data-kegiatan-program-kerja/kegiatan-aksi.php');
         break;
+    case 'instrumentList':
+        require_once(PUB_DIR . 'page/kegiatan/data-capaian-program-kerja.php');
+        break;
+    case 'detailInstrumentList':
+        require_once(PUB_DIR . 'page/kegiatan/data-capaian-program-kerja/detail-capaian-data-program-kerja.php');
+        break;
+    case 'setInstrumentList':
+        require_once(PUB_DIR . 'page/kegiatan/data-capaian-program-kerja/capaian-aksi.php');
+        break;
 
-        //common fitur
+    //common fitur
     case 'setCommonFeature':
         require_once(PUB_DIR . 'page/common-fitur/common-fitur-aksi.php');
         break;
-        //signout
+    //signout
     case 'logout':
         require_once(PUB_DIR . '../signout.php');
         break;

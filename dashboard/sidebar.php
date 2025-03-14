@@ -42,7 +42,7 @@
                         <a href="#" data-toggle="modal" data-target="#showYearActivity" class="pc-link "><span class="pc-micon"><i data-feather="list"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
                     </li>
                     <li class="pc-item">
-                        <a href="#" data-toggle="modal" data-target="#commingSoon" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Capaian Kinerja</span></a>
+                        <a href="#" data-toggle="modal" data-target="#showYearInstrument" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Capaian Kinerja</span></a>
                     </li>
                     <li class="pc-item pc-caption">
                         <label>Report Laporan</label>
@@ -66,7 +66,7 @@
                         <a href="#" data-toggle="modal" data-target="#showYearActivity" class="pc-link "><span class="pc-micon"><i data-feather="list"></i></span><span class="pc-mtext">Data Kegiatan</span></a>
                     </li>
                     <li class="pc-item">
-                        <a href="#" data-toggle="modal" data-target="#commingSoon" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Capaian Kinerja</span></a>
+                        <a href="#" data-toggle="modal" data-target="#showYearInstrument" class="pc-link "><span class="pc-micon"><i data-feather="bar-chart-2"></i></span><span class="pc-mtext">Data Capaian Kinerja</span></a>
                     </li>
                     <li class="pc-item pc-caption">
                         <label>Report Laporan</label>
@@ -121,19 +121,6 @@
                 </div>
             </div>
             <div class="show-year-activity" id="show-year-activity"></div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="showYearInstrument" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleEditModal" aria-hidden="true" aria-modal="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div id="load-show-year-instrument" style="display: none;">
-                <div class="modal-body">
-                    <span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true"></span>
-                    loading......
-                </div>
-            </div>
-            <div class="show-year-instrument" id="show-year-instrument"></div>
         </div>
     </div>
 </div>

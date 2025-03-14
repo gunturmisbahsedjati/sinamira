@@ -33,6 +33,7 @@ if (isset($_SESSION['alert'])) : ?>
 <?php endif ?>
 <?php
 if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
+  $thn = decrypt($_GET['_token']);
 ?>
   <h4 class="text-secondary" id="data_kegiatan">Data Kegiatan Program Kerja Tahun <?= decrypt($_GET['_token']) ?></h4>
   <div class="row">
@@ -64,34 +65,34 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                 <?php
                 $no = 1;
                 $sqlArea = mysqli_query($myConnection, "select tb_area.*,
-                (select count(id_program) from tb_program where id_area = tb_area.id_area and soft_delete = 0) as jml_program,
-                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0) as jml_kegiatan,
-                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and status_kegiatan = 0) as jml_belum,
-                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and status_kegiatan = 1) as jml_sudah,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_undangan is not null and file_surat_undangan != 0 and file_surat_undangan != '')) as jml_sudah_upload_file_surat_undangan,
-                (select count(file_surat_undangan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_undangan = 0 and file_surat_undangan != '')) as jml_non_upload_file_surat_undangan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_surat_undangan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_sk_kegiatan is not null and file_sk_kegiatan != 0 and file_sk_kegiatan != '')) as jml_sudah_upload_file_sk_kegiatan,
-                (select count(file_sk_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_sk_kegiatan = 0 and file_sk_kegiatan != '')) as jml_non_upload_file_sk_kegiatan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_sk_kegiatan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_panduan is not null and file_panduan != 0 and file_panduan != '')) as jml_sudah_upload_file_panduan,
-                (select count(file_panduan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_panduan = 0 and file_panduan != '')) as jml_non_upload_file_panduan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_panduan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_tugas is not null and file_surat_tugas != 0 and file_surat_tugas != '')) as jml_sudah_upload_file_surat_tugas,
-                (select count(file_surat_tugas) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_tugas = 0 and file_surat_tugas != '')) as jml_non_upload_file_surat_tugas,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_surat_tugas,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_daftar_hadir is not null and file_daftar_hadir != 0 and file_daftar_hadir != '')) as jml_sudah_upload_file_daftar_hadir,
-                (select count(file_daftar_hadir) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_daftar_hadir = 0 and file_daftar_hadir != '')) as jml_non_upload_file_daftar_hadir,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_daftar_hadir,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_notula is not null and file_notula != 0 and file_notula != '')) as jml_sudah_upload_file_notula,
-                (select count(file_notula) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_notula = 0 and file_notula != '')) as jml_non_upload_file_notula,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_notula,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_hasil_kegiatan is not null and file_hasil_kegiatan != 0 and file_hasil_kegiatan != '')) as jml_sudah_upload_file_hasil_kegiatan,
-                (select count(file_hasil_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_hasil_kegiatan = 0 and file_hasil_kegiatan != '')) as jml_non_upload_file_hasil_kegiatan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_hasil_kegiatan,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_dokumentasi is not null and file_dokumentasi != 0 and file_dokumentasi != '')) as jml_sudah_upload_file_dokumentasi,
-                (select count(file_dokumentasi) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_dokumentasi = 0 and file_dokumentasi != '')) as jml_non_upload_file_dokumentasi,
-                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 ) as jml_semua_file_dokumentasi
+                (select count(id_program) from tb_program where id_area = tb_area.id_area and soft_delete = 0 and thn_program = '$thn') as jml_program,
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_kegiatan,
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and status_kegiatan = 0 and thn_kegiatan = '$thn') as jml_belum,
+                (select count(id_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and status_kegiatan = 1 and thn_kegiatan = '$thn') as jml_sudah,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_undangan is not null and file_surat_undangan != 0 and file_surat_undangan != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_surat_undangan,
+                (select count(file_surat_undangan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_undangan = 0 and file_surat_undangan != '') and thn_kegiatan = '$thn') as jml_non_upload_file_surat_undangan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_surat_undangan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_sk_kegiatan is not null and file_sk_kegiatan != 0 and file_sk_kegiatan != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_sk_kegiatan,
+                (select count(file_sk_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_sk_kegiatan = 0 and file_sk_kegiatan != '') and thn_kegiatan = '$thn') as jml_non_upload_file_sk_kegiatan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_sk_kegiatan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_panduan is not null and file_panduan != 0 and file_panduan != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_panduan,
+                (select count(file_panduan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_panduan = 0 and file_panduan != '') and thn_kegiatan = '$thn') as jml_non_upload_file_panduan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_panduan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_tugas is not null and file_surat_tugas != 0 and file_surat_tugas != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_surat_tugas,
+                (select count(file_surat_tugas) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_surat_tugas = 0 and file_surat_tugas != '') and thn_kegiatan = '$thn') as jml_non_upload_file_surat_tugas,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_surat_tugas,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_daftar_hadir is not null and file_daftar_hadir != 0 and file_daftar_hadir != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_daftar_hadir,
+                (select count(file_daftar_hadir) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_daftar_hadir = 0 and file_daftar_hadir != '') and thn_kegiatan = '$thn') as jml_non_upload_file_daftar_hadir,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_daftar_hadir,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_notula is not null and file_notula != 0 and file_notula != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_notula,
+                (select count(file_notula) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_notula = 0 and file_notula != '') and thn_kegiatan = '$thn') as jml_non_upload_file_notula,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_notula,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_hasil_kegiatan is not null and file_hasil_kegiatan != 0 and file_hasil_kegiatan != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_hasil_kegiatan,
+                (select count(file_hasil_kegiatan) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_hasil_kegiatan = 0 and file_hasil_kegiatan != '') and thn_kegiatan = '$thn') as jml_non_upload_file_hasil_kegiatan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_hasil_kegiatan,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_dokumentasi is not null and file_dokumentasi != 0 and file_dokumentasi != '') and thn_kegiatan = '$thn') as jml_sudah_upload_file_dokumentasi,
+                (select count(file_dokumentasi) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and (file_dokumentasi = 0 and file_dokumentasi != '') and thn_kegiatan = '$thn') as jml_non_upload_file_dokumentasi,
+                (select count(*) from tb_kegiatan where id_area = tb_area.id_area and soft_delete = 0 and thn_kegiatan = '$thn') as jml_semua_file_dokumentasi
                 from tb_area
                 where tb_area.soft_delete = 0 ");
                 while ($viewArea = mysqli_fetch_array($sqlArea)) {
@@ -132,6 +133,7 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
 <?php
 } elseif (isset($_GET['_token']) && ($level == 3)) {
   $id_area = $_SESSION['akses_tim'];
+  $thn = decrypt($_GET['_token']);
 ?>
   <h4 class="text-secondary" id="data_program">Data Program Kerja Tahun <?= decrypt($_GET['_token']) ?></h4>
   <div class="row">
@@ -162,7 +164,7 @@ if (isset($_GET['_token']) && ($level == 1 || $level == 2)) {
                                           from tb_program
                                           left join tb_area on tb_area.id_area = tb_program.id_area
                                           left join tb_jenis_program on tb_jenis_program.id_jenis_program = tb_program.id_jenis_program
-                                          where tb_program.soft_delete = 0 and tb_program.id_area = '$id_area'");
+                                          where tb_program.soft_delete = 0 and tb_program.id_area = '$id_area' and tb_program.thn_program = '$thn'");
                 while ($showProgram = mysqli_fetch_array($sqlProgram)) {
                 ?>
                   <tr>

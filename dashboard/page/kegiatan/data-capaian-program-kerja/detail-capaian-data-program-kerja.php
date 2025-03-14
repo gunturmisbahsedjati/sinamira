@@ -33,9 +33,9 @@ if (isset($_SESSION['alert'])) : ?>
 <?php endif ?>
 <?php
 if (isset($_GET['_token']) && isset($_GET['_key']) && ($level == 1 || $level == 2)) {
-  include_once 'detail-kegiatan-data-program-kerja-akses-admin.php';
+  include_once 'detail-capaian-data-program-kerja-akses-admin.php';
 } elseif (isset($_GET['_token']) && ($level == 3)) {
-  include_once 'detail-kegiatan-data-program-kerja-akses-tim.php';
+  include_once 'detail-capaian-data-program-kerja-akses-tim.php';
 } else {
   echo '<div class="container-xxl flex-grow-1 container-p-y">
     <div class="card border border-primary col-6">
